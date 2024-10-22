@@ -51,11 +51,11 @@ Here are a few more common behavioral interview questions along with STAR-based 
 **Disclaimer:** Please note that the provided sample responses to these questions are intended to serve as inspiration. During the actual interview, you should provide your own examples based on your past experiences.
 <details>
 <summary><b>Tell me about yourself.</b></summary>
-I am a senior software developer with over 8 years of experience in the tech industry, specializing in full-stack development. My journey in software development began with a bachelor's degree in Computer Science, which laid a solid foundation in programming and problem-solving skills.
+I am a senior software developer with over 8 years of experience into product development. My journey in software development began with a bachelor's degree in Computer Science, which laid a solid foundation in programming and problem-solving skills.
   
-Throughout my career, I have worked with various technologies and programming languages, including, Java, Spring, Hibernate, Microservices, Cloud, SQL, JavaScript. I have a strong background in developing web applications, and I am particularly passionate about creating user-friendly, efficient, and scalable solutions. 
+Throughout my career, I have worked with various technologies and programming languages, including, Java, Spring, Hibernate, Microservices, Cloud, Angular, Javascript. I have a strong background in developing large scale enterprise web applications, and I am particularly passionate about creating user-friendly, efficient, and scalable solutions. 
 
-Currently, I am working with Oracle as Senior Member of Technical Staff, where I am part of a IPS team, I am working on cloud sass based GAT project. This project not only honed my technical skills but also improved my abilities in teamwork and communication. 
+Currently, I am working with Oracle as Senior Member of Technical Staff, where I am part of a IPS team, I am working on cloud sass based project called GAT. This project improved my technical skills and also abilities in teamwork and communication. 
 
 I like to stay updated with the latest technological trends. I also have a keen interest in AI and machine learning. 
 I am excited about the opportunity to bring my diverse skill set, passion for technology, and collaborative spirit to your team and company.
