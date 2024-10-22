@@ -1,9 +1,3 @@
-<p align="center">
-  <img src="images/behvaioral-repo-logo.png" width="350" height="200">
-</p>
-<p align="center">
-  <a href="https://blog.algomaster.io/">Join Free Newsletter</a>
-</p>
 
 This repository contains tips and resources to prepare for Behavioral interviews.
 
@@ -938,5 +932,3 @@ I am excited about the opportunity to bring my diverse skill set, passion for te
 - What excites you the most about the [company name]'s future?
 - I’m very interested in scalability, and I’d love to learn more about it. What opportunities are there at this company to learn more about this?
 
-## 📇 Other Resources
-- [Amazon Leadership principles](https://www.amazon.jobs/content/en/our-workplace/leadership-principles)
