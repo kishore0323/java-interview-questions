@@ -47,27 +47,15 @@ Here are a few more common behavioral interview questions along with STAR-based 
    - **Action:** "I quickly organized a meeting with the design and development teams to discuss the changes and their feasibility within the timeline..."
    - **Result:** "We successfully implemented the design changes without delaying the project, and the app received positive reviews from users."
 
-## ⚙️ Behavioral Interview Preparation Grid
-This format is inspired by the book "Cracking the Coding Interview" by Gayle Laakman McDowell.
-
-I found it really helpful during my preparation. 
-
-Create a sheet and list down common questions and their answers for each project. 
-
-You can clone the Notion page and fill this sheet based on your experience.
-![Interview Preparation Grid](images/interview-preparation-grid.png)
-[Notion Page](https://ashishps.notion.site/ashishps/Behavioral-Interview-Preparation-Grid-95f97d42f3494d86a3a683752c4b54b5)
-
-
 ## 🚀 Questions
 **Disclaimer:** Please note that the provided sample responses to these questions are intended to serve as inspiration. During the actual interview, you should provide your own examples based on your past experiences.
 <details>
 <summary><b>Tell me about yourself.</b></summary>
-I am a software developer with over 8 years of experience in the tech industry, specializing in full-stack development. My journey in software development began with a bachelor's degree in Computer Science, which laid a solid foundation in programming and problem-solving skills.
+I am a senior software developer with over 8 years of experience in the tech industry, specializing in full-stack development. My journey in software development began with a bachelor's degree in Computer Science, which laid a solid foundation in programming and problem-solving skills.
   
 Throughout my career, I have worked with various technologies and programming languages, including, Java, Spring, Hibernate, Microservices, Cloud, SQL, JavaScript. I have a strong background in developing web applications, and I am particularly passionate about creating user-friendly, efficient, and scalable solutions. 
 
-Currently I name working with Oracle as Senior Member of Technical Staff, where I am part of a IPS team, I am working on cloud sass based GAT project. This project not only honed my technical skills but also improved my abilities in teamwork and communication. 
+Currently, I am working with Oracle as Senior Member of Technical Staff, where I am part of a IPS team, I am working on cloud sass based GAT project. This project not only honed my technical skills but also improved my abilities in teamwork and communication. 
 
 I like to stay updated with the latest technological trends. I also have a keen interest in AI and machine learning. 
 I am excited about the opportunity to bring my diverse skill set, passion for technology, and collaborative spirit to your team and company.
