@@ -18,7 +18,7 @@
 * *[Java Multiple Choice Questions](java-multiple-choice-questions-answers.md)*
 * *[Microservices](Microservices.md)*
 * *[Angular](Angular-questions.md)*
-* * *[Javascript](Javascript.md)*
+* *[Javascript](Javascript.md)*
   
 <br/>
 
