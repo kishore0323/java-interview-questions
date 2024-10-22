@@ -2089,11 +2089,13 @@ This article provides a brief description of what is referred to as traditional 
 
 A bank, or post office, has several counters from where the customers are served at the branches.  When a counter finishes with the current customer, the next customer in the queue will take its place and the person behind the counter, also referred to as the _employee_, starts serving the new customer.  The employee will only serve one customer at a given point in time and the customers in the queue need to wait for their turn.  Furthermore, the employees are very patient and will never ask their customers to leave or step aside, even if these are waiting for something else to happen.  The following image shows a simple view of the customers waiting and the employees serving the customers at the head of the queue.
 
-![Customers waiting for their turn](img/Customers-waiting-for-their-turn.png)
+![image](https://github.com/user-attachments/assets/c888ca02-cb85-436c-a370-0f6f85d9ae44)
+
 
 Something similar happens in a multithreaded program where the `Thread`s ([Java Doc](http://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html)) represents the employees and the tasks to be carried out are the customers.  The following image is identical to the above, with just the labels updated to use the programming terminology.
 
-![Threads and Tasks](img/Threads-and-Tasks.png)
+![image](https://github.com/user-attachments/assets/9854c61a-73a3-49a7-a320-1451c4d5a9dc)
+
 
 This should help you relate these two aspects and better visualise the scenario being discussed.
 
@@ -2101,7 +2103,7 @@ Most of the thread pools ([Tutorial](https://docs.oracle.com/javase/tutorial/ess
 
 Let us use the same analogy that we used before with the customer waiting in the queue.  Say that _Customer 1_, who is being served by _Employee 1_, needs some information from _Customer 6_, who is not yet in the queue.  He or she (_Customer 1_) calls their friend (_Customer 6_) and waits for him or her (_Customer 6_) to come to the bank.  In the meantime, _Customer 1_ stays at the counter occupying _Employee 1_.  As mentioned before, the employees are very patient and will never send a customer back to the queue or ask them to step aside until all his or her dependencies are resolved.  _Customer 6_ arrives and queues as shown below.
 
-![Old Customer waiting for New Customer](img/Old-Customer-waiting-for-New-Customer.png)
+![image](https://github.com/user-attachments/assets/df4c1676-78b8-4813-b130-7f542f1c97f4)
 
 With _Customer 1_ still occupying an employee, and for the sake of this argument the other customers, _Customer 2_ and _Customer 3_, too do the same (that is wait for something which is queued), then we have a deadlock.  All employees are occupied by customers that are waiting for something to happen.  Therefore the employees will never be free to serve the other customers.
 
@@ -2115,17 +2117,17 @@ This is achieved by the use of _fork_ and _join_ operations provided by the fram
 
 The Fork/Join Framework makes use of a special kind of thread pool called `ForkJoinPool` ([Java Doc](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ForkJoinPool.html)), which differentiates it from the rest.  `ForkJoinPool` implements a work-stealing algorithm and can execute `ForkJoinTask` ([Java Doc](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ForkJoinTask.html)) objects.  The `ForkJoinPool` maintains a number of threads, which number is typically based on the number of CPUs available.  Each thread has a special kind of queue, `Deque`s ([Java Doc](https://docs.oracle.com/javase/7/docs/api/java/util/Deque.html)), where all its tasks are placed.  This is quite an important point to understand.  The threads do not share a common queue, but each thread has its own queue as shown next.
 
-![Threads and their Queues](img/Threads-and-their-Queues.png)
+![image](https://github.com/user-attachments/assets/93bbcee0-c63b-498a-b4ab-20c7714d3492)
 
 The above image illustrates another queue that each thread has (lower part of the image).  This queue, so to call it, allows the threads to put aside tasks which are blocked waiting for something else to happen.  In other words, if the current task cannot proceed (as it performs a _join_ on a subtask), then it is placed on this queue until all of its dependencies are ready.
 
 New tasks are added to the thread's queue (using the _fork_ operation) and each thread always processes the last task added to its queue.  This is quite important.  If the queue of a thread has two tasks, the last task added to the queue is processed first.  This is referred to as last in first out, LIFO ([Wiki](http://en.wikipedia.org/wiki/LIFO_%28computing%29)).  
 
-![Task 1 and Task 2](img/Task1-and-Task2.png)
+![image](https://github.com/user-attachments/assets/cbab8e1d-c562-45e2-9fb3-c109ee227be8)
 
 In the above image, _Thread 1_ has two tasks in its queue, where _Task 1_ was added to the queue before _Task 2_.  Therefore, _Task 2_ will be executed first by _Thread 1_ and then it executes _Task 1_.   Any idle threads can take tasks from the other threads queues if available, that is, work-stealing.  A thread will always steal oldest tasks from some other thread's queue as shown in the following image.
 
-![Task 1 was stolen by Thread 2](img/Task-1-was-stolen-by-Thread-2.png)
+![image](https://github.com/user-attachments/assets/09e19d30-9931-4bf2-8c51-b84b45bc6c6a)
 
 As shown in the above image, _Thread 2_ stole the oldest task, _Task 1_, from _Thread 1_.  As a rule of thumb, threads will always attempt to steal from their neighbouring thread to minimise the contention that may be created during the work stealing.
 
@@ -2133,35 +2135,35 @@ The order in which tasks are executed and stolen is quite important.  Ideally, w
 
 A recursive algorithm starts with a large problem and applies a divide-and-conquer technique to break down the problem into smaller parts, until these are small enough to be solved directly.  The first task added to the queue is the largest task.  The first task will break the problem into a set of smaller tasks, which tasks are added to the queue as shown next.
 
-![Tasks and Subtasks](img/Tasks-and-Subtasks.png)
+![image](https://github.com/user-attachments/assets/df51edd2-3491-42c2-bf7c-4a42bea3059e)
 
 _Task 1_ represents our problem, which is divided into two tasks,  _Task 2_ is small enough to solve as is, but _Task 3_ needs to be divided further.  Tasks _Task 4_ and _Task 5_ are small enough and these require no further splitting.  This represents a typical recursive algorithm which can be split into smaller parts and then aggregates the results when ready.  A practical example of such algorithm is calculating the size of a directory.  We know that the size of a directory is equal to the size of its files.
 
-![Directories and Files](img/Directories-and-Files.png)
+![image](https://github.com/user-attachments/assets/48a7cc24-f8a5-404d-a426-a3471c616c77)
 
 Therefore the size of _Dir 1_ is equal to the size of _File 2_ plus the size of _Dir 3_.  Since _Dir 3_ is a directory, its size is equal to the size of its content.  In other words, the size of _Dir 3_ is equal to the size of _File 4_ plus the size of _File 5_.
 
 Let us see how this is executed.  We start with one task, that is, to compute the size of directory as shown in the following image.
 
-![Step 1 - Start with Task 1](img/Step-1-Start-with-Task-1.png)
+![image](https://github.com/user-attachments/assets/59592e01-964c-42a5-9cac-d7a3e250021e)
 
 _Thread 1_ will take _Task 1_ which tasks forks two other subtasks.  These tasks are added to the queue of _Thread 1_ as shown in the next image.
 
-![Step 2 - Add subtasks Task 2 and Task 3](img/Step-2-Add-subtasks-Task-2-and-Task-3.png)
+![image](https://github.com/user-attachments/assets/dc9d0fbb-ca77-47df-83ee-7474366d2987)
 
 _Task 1_ is waiting for the subtasks, _Task 2_ and _Task 3_ to finish, thus is pushed aside which frees _Thread 1_.  To use better terminology, _Task 1_ joins the subtasks _Task 2_ and _Task 3_.  _Thread 1_ starts executing _Task 3_ (the last task added to its queue), while _Thread 2_ steals _Task 2_.  
 
-![Step 3 - Thread 2 steals Task 2](img/Step-3-Thread-2-steals-Task-2.png)
+![image](https://github.com/user-attachments/assets/aecdcea8-d850-4d6e-8922-0ee505beed7a)
 
 Note that _Thread 1_ has already started processing its second task, while _Thread 3_ is still idle.  As we will see later on, the threads will not perform the same number of work and the first thread will always produce more than the last thread.  _Task 3_ forks two more subtasks which are added to the queue of the thread that is executing it.  Therefore, two more tasks are added to _Thread 1_'s queue.  _Thread 2_, ready from _Task 2_, steals again another task as shown next.
 
-![Step 4 - Thread 2 steals Task 4](img/Step-4-Thread-2-steals-Task-4.png)
+![image](https://github.com/user-attachments/assets/ddb65e58-cd5d-457b-a61d-19c010717e46)
 
 In the above example, we saw that _Thread 3_ never executed a task.  This is because we only have very little subtasks.  Once _Task 4_ and _Task 5_ are ready, their results are used to compute _Task 3_ and then _Task 1_.
 
 As hinted before, the work is not evenly distributed among threads.  The following chart shows how the work is distributed amongst threads when calculating the size of a reasonably large directory.
 
-![Work Distribution](img/Work-Distribution.png)
+![image](https://github.com/user-attachments/assets/2c59a2d7-f4d8-4481-b61f-7e6429f66390)
 
 In the above example four threads were used.  As expected, Thread 1 performs almost 40% of the work while Thread 4 (the last thread) performs slightly more than 5% of the work.  This is another important principle to understand.  The Fork/Join Framework will not distribute work amongst threads evenly and will try to minimise the number of threads utilised.  The second threads will only take work from the first thread is this is not cooping.  As mentioned before, moving tasks between threads has a cost which the framework tries to minimise.
 
