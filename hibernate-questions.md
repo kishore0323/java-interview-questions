@@ -1776,8 +1776,8 @@ In the hibernate session we can maintain only one employee object in persistent 
 
 If your entity class doesn't have a no-argument constructor, Hibernate (or JPA) will fail to instantiate the entity during certain operations, such as fetching data from the database, saving, or updating entities. You may encounter exceptions like:
 
-``org.hibernate.InstantiationException: This happens when Hibernate tries to instantiate an entity using reflection but cannot find a no-arg constructor.
-org.hibernate.InstantiationException: No default constructor for entity: [com.example.MyEntity]``
+`org.hibernate.InstantiationException: This happens when Hibernate tries to instantiate an entity using reflection but cannot find a no-arg constructor.
+org.hibernate.InstantiationException: No default constructor for entity: [com.example.MyEntity]`
 
 #### Q. What is difference between sorted collection and ordered collection, which one is better?
 #### Q. What are the collection types in Hibernate?
