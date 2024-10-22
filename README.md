@@ -17,7 +17,8 @@
 * *[Java Design Pattern Questions](java-design-pattern-questions.md)*
 * *[Java Multiple Choice Questions](java-multiple-choice-questions-answers.md)*
 * *[Microservices](Microservices.md)*
-
+* *[Angular](Angular-questions.md)*
+  
 <br/>
 
 ## Q. ***What are the types of Exceptions? Explain the hierarchy of Java Exception classes?***
