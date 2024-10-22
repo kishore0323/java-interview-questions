@@ -1770,10 +1770,15 @@ In the hibernate session we can maintain only one employee object in persistent 
 </div>
 
 #### Q. What is difference between Hibernate save(), saveOrUpdate() and persist() methods?
-Summary of Differences:
 ![Screenshot 2024-10-22 at 1 11 47 PM](https://github.com/user-attachments/assets/1ff6b4f8-caee-4b78-942b-a1dd00a5bc9a)
 
 #### Q. What will happen if we don’t have no-args constructor in Entity bean?
+
+If your entity class doesn't have a no-argument constructor, Hibernate (or JPA) will fail to instantiate the entity during certain operations, such as fetching data from the database, saving, or updating entities. You may encounter exceptions like:
+
+``org.hibernate.InstantiationException: This happens when Hibernate tries to instantiate an entity using reflection but cannot find a no-arg constructor.
+org.hibernate.InstantiationException: No default constructor for entity: [com.example.MyEntity]``
+
 #### Q. What is difference between sorted collection and ordered collection, which one is better?
 #### Q. What are the collection types in Hibernate?
 #### Q. How to implement Joins in Hibernate?
