@@ -2078,5 +2078,4 @@ The `wait()` is mainly used for shared resources, a thread notifies other waitin
     <b><a href="#">↥ back to top</a></b>
 </div>
 
-## Q. [More Questions on Multithreading](https://github.com/learning-zone/java-basics/blob/master/multithreading-questions.md)
 
