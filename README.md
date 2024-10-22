@@ -22,7 +22,7 @@
 * *[HTML Interview Questions](HTML.md)*
 * *[CSS Interview Questions](CSSL.md)*
 * *[Docker Interview Questions](Docker.md)*
-* *[Kubernetes Interview Questions](Kuberntes.md)*
+* *[Kubernetes Interview Questions](Kubernetes.md)*
   
 <br/>
 
