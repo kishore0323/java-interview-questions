@@ -55,7 +55,7 @@ I am a senior software developer with over 8 years of experience into product de
   
 Throughout my career, I have worked with various technologies and programming languages, including, Java, Spring, Hibernate, Microservices, Cloud, Angular, Javascript. I have a strong background in developing large scale enterprise web applications, and I am particularly passionate about creating user-friendly, efficient, and scalable solutions. 
 
-Currently, I am working with Oracle as Senior Member of Technical Staff, where I am part of a IPS team, I am working on cloud sass based project called GAT. This project improved my technical skills and also abilities in teamwork and communication. 
+Currently, I am working with Oracle as Senior Member of Technical Staff, where I am part of a IPS team, I am working on cloud sass based project called GAT. This project improved my technical skills and also abilities in teamwork and communication. I train and support new team members/juniors whenever they joined the organization. Experenice working in agile enironment scrum and kanban framework.
 
 I like to stay updated with the latest technological trends. I also have a keen interest in AI and machine learning. 
 I am excited about the opportunity to bring my diverse skill set, passion for technology, and collaborative spirit to your team and company.
