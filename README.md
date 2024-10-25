@@ -23,7 +23,7 @@
 * *[CSS Interview Questions](CSSL.md)*
 * *[Docker Interview Questions](Docker.md)*
 * *[Kubernetes Interview Questions](Kubernetes.md)*
-* *[500 DataStrcutures and Algorithms](DSA500.md)*
+* *[500 DataStructures and Algorithms](DSA500.md)*
   
 <br/>
 
