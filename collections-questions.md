@@ -2167,4 +2167,6 @@ new instance of Employee will be inserted to HashMap
 </div>
 
 
+[More On Collections](https://github.com/AnirudhDas/AniruddhaDas.github.io/blob/master/Java/CollectionFrameworkInJava/CollectionFrameworkInJava.md)
+
 
