@@ -2747,6 +2747,95 @@ This approach takes approximately 11 seconds to complete making it the slowest o
 
 This may be a surprise to many.  How is this possible, when multiple threads were used?  This is a common misconception.  Multithreading does not guarantee better performance.  In this case we have a design flaw which ideally we avoid.  The common counter named `sizeAccumulator` is shared between all threads and thus causes contention between threads.  This actually defeats the purpose of the divide and conquer technique as a bottleneck is created.
 
+
+### CountDownLatch Example
+To execute thread `t1` after the completion of threads `t2`, `t3`, and `t4`, which are running in parallel in Java, you can use a **CountDownLatch**. The `CountDownLatch` allows one or more threads to wait until a set of operations being performed in other threads completes.
+
+Here's an example using `CountDownLatch`:
+
+java
+
+Copy code
+
+```import java.util.concurrent.CountDownLatch;
+
+public class ThreadExecutionExample {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        // Create a CountDownLatch initialized to 3 (for t2, t3, t4)
+        CountDownLatch latch = new CountDownLatch(3);
+
+        // Create threads t2, t3, and t4
+        Thread t2 = new Thread(() -> {
+            try {
+                System.out.println("Thread t2 is running.");
+                // Simulate some work with sleep
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                // Decrease the count of the latch
+                latch.countDown();
+            }
+        });
+
+        Thread t3 = new Thread(() -> {
+            try {
+                System.out.println("Thread t3 is running.");
+                // Simulate some work with sleep
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                // Decrease the count of the latch
+                latch.countDown();
+            }
+        });
+
+        Thread t4 = new Thread(() -> {
+            try {
+                System.out.println("Thread t4 is running.");
+                // Simulate some work with sleep
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } finally {
+                // Decrease the count of the latch
+                latch.countDown();
+            }
+        });
+
+        // Start threads t2, t3, and t4 in parallel
+        t2.start();
+        t3.start();
+        t4.start();
+
+        // Create thread t1 that should run after t2, t3, and t4 are completed
+        Thread t1 = new Thread(() -> {
+            try {
+                // Wait until the count reaches zero
+                latch.await();
+                System.out.println("Thread t1 is running after t2, t3, and t4 have completed.");
+                // Add your task here
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
+
+        // Start thread t1 (it will wait until t2, t3, and t4 finish)
+        t1.start();
+    }
+}
+```
+
+### Explanation:
+
+1.  **CountDownLatch Initialization**: A `CountDownLatch` is created with a count of 3 because there are three threads (`t2`, `t3`, and `t4`).
+2.  **Parallel Execution**: Threads `t2`, `t3`, and `t4` are started simultaneously.
+3.  **Latch Countdown**: Each thread decrements the latch count using `latch.countDown()` after completing its task.
+4.  **Waiting for Completion**: Thread `t1` calls `latch.await()`, which blocks it until the latch count reaches zero (indicating all the threads `t2`, `t3`, and `t4` are done).
+   
 ## Conclusion
 
 This article provided a detailed explanation of the Fork/Join Framework and how this can be used.  It provided a practical example and compared several approaches.  The Fork/Join Framework is ideal for recursive algorithms but it does not distribute the load amongst the threads evenly.  The tasks and subtask should not block on anything else but join and should delegate work using fork.  Avoid any blocking IO operations within tasks and minimise the mutable share state especially modifying the variable as much as possible as this has a negative effect on the overall performance.
