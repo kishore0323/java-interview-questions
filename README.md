@@ -7,7 +7,7 @@
 * *[Multithreading Interview Questions](multithreading-questions.md)*
 * *[Collections Interview Questions](collections-questions.md)*
 * *[Hibernate Interview Questions](hibernate-questions.md)*
-* *[Design Patterns](DesignPatterns)*
+* *[Design Patterns](DesignPatterns.md)*
 * *[JDBC Interview Questions](JDBC-questions.md)*
 * *[Java Programs](java-programs.md)*
 * *[Java String Methods](java-string-methods.md)*
