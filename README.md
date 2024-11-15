@@ -169,7 +169,7 @@ As soon as method ends, the block becomes unused and become available for next m
 
 **Difference**  
 
-
+==
 |Parameter	       |Stack Memory	               |Heap Space                       |
 |------------------|-----------------------------|-----------------------------------|
 |Application	   |Stack is used in parts, one at a time during execution of a thread|	The entire application uses Heap space during runtime|
@@ -178,7 +178,8 @@ As soon as method ends, the block becomes unused and become available for next m
 |Order	           |It is accessed using Last-in First-out (LIFO) memory allocation system|	This memory is accessed via complex memory management techniques that include Young Generation, Old or Tenured Generation, and Permanent Generation.|
 |Life	           |Stack memory only exists as long as the current method is running|Heap space exists as long as the application runs|
 |Efficiency	       |Comparatively much faster to allocate when compared to heap| Slower to allocate when compared to stack|
-|Allocation/Deallocation| This Memory is automatically allocated and deallocated when a method is called and returned respectively|Heap space is allocated when new objects are created and deallocated by Gargabe Collector when they are no longer referenced |
+|Allocation/Deallocation| This Memory is automatically allocated and deallocated when a method is called and returned respectively|Heap space is allocated when new objects are created and deallocated by Gargabe Collector when they are no longer referenced | 
+==
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -196,7 +197,7 @@ The JVM is not platform independent. Java Virtual Machine (JVM) provides the env
 ## Q. ***What is JIT compiler in Java?***
 The Just-In-Time (JIT) compiler is a component of the runtime environment that improves the performance of Java applications by compiling bytecodes to native machine code at run time.
 
-Java programs consists of classes, which contain platform-neutral bytecodes that can be interpreted by a JVM on many different computer architectures. At run time, the JVM loads the class files, determines the semantics of each individual bytecode, and performs the appropriate computation. The additional processor and memory usage during interpretation means that a Java application performs more slowly than a native application. The JIT compiler helps improve the performance of Java programs by compiling bytecodes into native machine code at run time. The JIT compiler is enabled by default. When a method has been compiled, the JVM calls the compiled code of that method directly instead of interpreting it. 
+Java programs consists of classes, which contain platform-neutral bytecodes that can be interpreted by a JVM on many different computer architectures. At run time, the JVM loads the class files, determines the semantics of each individual bytecode, and performs the appropriate computation. The additional processor and memory usage during interpretation means that a Java application performs more slowly than a native application.== The JIT compiler helps improve the performance of Java programs by compiling bytecodes into native machine code at run time.== The JIT compiler is enabled by default. When a method has been compiled, the JVM calls the compiled code of that method directly instead of interpreting it. 
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
