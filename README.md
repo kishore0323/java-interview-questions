@@ -8,6 +8,7 @@
 * *[Collections Interview Questions](collections-questions.md)*
 * *[Spring Framework](Spring.md)*
 * *[Spring Boot](SpringBoot.md)*
+* *[SQL](SQL.md)*
 * *[Hibernate Interview Questions](hibernate-questions.md)*
 * *[Design Patterns](DesignPatterns.md)*
 * *[Java Programs](java-programs.md)*
