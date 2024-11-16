@@ -1724,6 +1724,7 @@ Considering the potential drawbacks, it's good to adhere to these best practices
 6. **Use DI for Wider Flexibility**: Combine the benefits of DI with the clarity and convenience of singleton where it makes sense.
    <br>
 
-#### Explore all 85 answers here 👉 [Devinterview.io - Software Architecture](https://devinterview.io/questions/software-architecture-and-system-design/software-architecture-interview-questions)
-
 <br>
+
+![IMG_7970](https://github.com/user-attachments/assets/e4a93bc2-d413-4159-a34c-4c41d56ef4b0)
+
