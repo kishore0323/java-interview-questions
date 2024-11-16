@@ -2,6 +2,8 @@
 
 Byte Byte Go System Design
 https://github.com/ByteByteGoHq/system-design-101/tree/main
+
+https://microservices.io/patterns/microservices.html
 <br>
 
 ## 1. What is a _microservice_ and how does it differ from a _monolithic architecture_?
