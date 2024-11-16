@@ -1728,6 +1728,8 @@ Considering the potential drawbacks, it's good to adhere to these best practices
 
 ![IMG_7973](https://github.com/user-attachments/assets/12379355-c19c-4004-8829-87332f22dba3)
 
+![IMG_6223](https://github.com/user-attachments/assets/ccff46dd-3122-48d4-b1aa-792341ba5b7b)
+
 ![IMG_7972](https://github.com/user-attachments/assets/6174312b-9c7e-4e55-8a99-706389909ce9)
 
 ![IMG_7971](https://github.com/user-attachments/assets/700f1bb2-59fa-42fe-a951-10c071ef9c5d)
