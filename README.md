@@ -1,4 +1,4 @@
-## Java, Spring, Angular, Javascript, SQL, Microservices, J2EE, JSP, Servlet, Hibernate Interview Questions
+## Java, Spring, Angular, Javascript, SQL, Microservices, Hibernate Interview Questions
 
 
 ### Table of Contents
@@ -6,6 +6,8 @@
 * *[Java 8 Interview Questions](java8-questions.md)*
 * *[Multithreading Interview Questions](multithreading-questions.md)*
 * *[Collections Interview Questions](collections-questions.md)*
+* *[Spring Framework](Spring.md)*
+* *[Spring Boot](Spring Boot.md)*
 * *[Hibernate Interview Questions](hibernate-questions.md)*
 * *[Design Patterns](DesignPatterns.md)*
 * *[Java Programs](java-programs.md)*
