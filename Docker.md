@@ -2010,3 +2010,193 @@ d) `export DOCKER_TRUSTED=1`<br>
 
 
 
+
+
+Deploying a **Spring Boot application** using Docker and running the Docker container on an **AWS EC2 instance** involves multiple steps, including Dockerizing the Spring Boot application, building a Docker image, running it locally, pushing it to the EC2 instance, and finally running the Docker container on EC2. Here’s a comprehensive guide:
+
+### **Step 1: Dockerize Your Spring Boot Application**
+
+1.  **Build the Spring Boot Application**:
+    
+    -   Navigate to your Spring Boot project directory.
+        
+    -   Use **Maven** or **Gradle** to package your application into a `jar` file:
+      
+        `mvn clean package` 
+        
+    -   This should generate a `jar` file in the `target` directory (e.g., `your-app.jar`).
+        
+2.  **Create a Dockerfile**:
+    
+    -   In the root directory of your project, create a file named `Dockerfile` (no extension).
+        
+    -   Example `Dockerfile`:
+        
+`Use an official OpenJDK runtime as a parent image
+FROM openjdk:11-jre-slim`
+
+`Set the working directory in the container
+WORKDIR /app`
+
+`Copy the application JAR file to the container
+COPY target/your-app.jar app.jar`
+
+`Expose the application port
+EXPOSE 8080`
+
+`Command to run the JAR file
+ENTRYPOINT ["java", "-jar", "app.jar”]`
+        
+ Replace `your-app.jar` with the name of the JAR file generated from your project.
+        
+3.  **Build the Docker Image**:
+    
+    -   Open a terminal in your project directory and build the Docker image:
+        `docker build -t your-app:latest .` 
+        
+    -   Check if the image is created successfully:
+        `docker images` 
+        
+4.  **Test the Docker Image Locally** (Optional):
+    
+    -   Run the Docker container locally to ensure it works:
+        `docker run -p 8080:8080 your-app:latest` 
+        
+    -   Open your browser or use `curl` to verify the app at `http://localhost:8080`.
+        
+
+### **Step 2: Set Up the EC2 Instance**
+
+1.  **Log in to AWS Console**:
+    
+    -   Go to the [AWS Management Console](https://aws.amazon.com/console/).
+    -   Navigate to **EC2 Dashboard**.
+2.  **Launch an EC2 Instance**:
+    
+    -   Click **Launch Instance**.
+    -   Choose an **Amazon Machine Image (AMI)**, preferably:
+        -   **Amazon Linux 2**.
+        -   **Ubuntu** (for Debian-based setup).
+    -   Choose an **Instance Type** (e.g., `t2.micro` for testing).
+    -   **Configure Instance Details** (default settings are usually fine).
+    -   **Add Storage** (default settings are sufficient unless additional storage is needed).
+    -   **Configure Security Group**:
+        -   Open **Port 22** for SSH access.
+        -   Open **Port 8080** (or your desired application port) for HTTP access.
+    -   Launch the instance and choose a **key pair** for SSH access.
+3.  **Connect to the EC2 Instance**:
+    
+    -   Open a terminal and SSH into the EC2 instance using:
+        `ssh -i "your-key.pem" ec2-user@your-public-ip` 
+        
+    -   Replace `"your-key.pem"` with the name of your key file and `your-public-ip` with the EC2 instance's public IP.
+        
+
+### **Step 3: Install Docker on the EC2 Instance**
+
+1.  **Update the System**:
+    `sudo yum update -y  # For Amazon Linux
+    sudo apt update -y  # For Ubuntu` 
+    
+2.  **Install Docker**:
+    
+    -   For **Amazon Linux**:
+        `sudo amazon-linux-extras install docker -y` 
+        
+    -   For **Ubuntu**:
+        `sudo apt install docker.io -y` 
+        
+3.  **Start and Enable Docker**:
+    `sudo systemctl start docker
+    sudo systemctl enable docker` 
+    
+4.  **Add the EC2 user to the Docker group** (optional, allows running Docker without `sudo`):
+    `sudo usermod -aG docker ec2-user` 
+    
+    -   **Logout and re-login** for the changes to take effect.
+5.  **Verify Docker Installation**:
+    `docker --version
+    docker run hello-world` 
+    
+
+### **Step 4: Transfer the Docker Image to the EC2 Instance**
+
+1.  **Option 1: Use Docker Hub** (Recommended for easier deployments):
+    
+    -   **Create a Docker Hub account** if you don't have one.
+        
+    -   **Tag the Docker image**:
+        `docker tag your-app:latest your-dockerhub-username/your-app:latest` 
+        
+    -   **Log in to Docker Hub**:
+        `docker login` 
+        
+    -   **Push the Docker image** to Docker Hub:
+        `docker push your-dockerhub-username/your-app:latest` 
+        
+    -   On the EC2 instance, **pull the Docker image**:
+        `docker pull your-dockerhub-username/your-app:latest` 
+        
+2.  **Option 2: SCP (Secure Copy) the Image File Directly**:
+    
+    -   Save the Docker image to a `.tar` file on your local machine:
+        `docker save -o your-app.tar your-app:latest` 
+        
+    -   Transfer the `.tar` file to EC2 using `scp`:
+        `scp -i "your-key.pem" your-app.tar ec2-user@your-public-ip:/home/ec2-user` 
+        
+    -   On the EC2 instance, **load the image**:
+        `docker load -i your-app.tar` 
+        
+### **Step 5: Run the Docker Container on EC2**
+
+1.  **Run the Docker Container**:
+    `docker run -d -p 8080:8080 your-dockerhub-username/your-app:latest` 
+    
+    -   Use the `-d` flag to run the container in detached mode.
+    -   Expose the application on **port 8080**.
+2.  **Verify the Container is Running**:
+    `docker ps` 
+    
+3.  **Access the Application**:
+    -   Navigate to vbnet
+        `http://your-public-ip:8080` 
+        
+
+### **Step 6: Manage the Docker Container**
+
+1.  **View Container Logs**:
+    `docker logs <container-id>` 
+    
+2.  **Stop the Container**:
+    `docker stop <container-id>` 
+    
+3.  **Restart the Container**:
+    `docker start <container-id>` 
+    
+4.  **Remove the Container**:
+    `docker rm <container-id>` 
+    
+
+### **Step 7: Optional Enhancements (Load Balancer, HTTPS, Auto-restart)**
+
+1.  **Expose the Application via a Load Balancer** (Optional):
+    
+    -   Use **AWS Elastic Load Balancer (ELB)** for better availability and load distribution.
+    -   Configure the **Load Balancer** to forward traffic from **port 80** to your application port.
+2.  **Enable HTTPS**:
+    
+    -   Use **AWS Certificate Manager** for SSL certificates.
+    -   Configure the Load Balancer to handle SSL termination.
+3.  **Auto Restart the Docker Container** (Optional):
+    
+    -   Use the `--restart` flag to ensure the container auto-restarts if it fails:
+        `docker run -d -p 8080:8080 --restart unless-stopped your-dockerhub-username/your-app:latest` 
+        
+
+### **Step 8: Monitoring and Scaling (Optional)**
+
+1.  Use **AWS CloudWatch** for monitoring logs, performance, and resource utilization.
+2.  Set up **Auto Scaling Groups** if you plan to have multiple EC2 instances to handle increased traffic.
+
+By following these steps, you can successfully deploy a Spring Boot application using Docker on an AWS EC2 instance.
