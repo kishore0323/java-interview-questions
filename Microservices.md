@@ -1726,5 +1726,12 @@ Considering the potential drawbacks, it's good to adhere to these best practices
 
 <br>
 
+![IMG_7972](https://github.com/user-attachments/assets/6174312b-9c7e-4e55-8a99-706389909ce9)
+
+![IMG_7971](https://github.com/user-attachments/assets/700f1bb2-59fa-42fe-a951-10c071ef9c5d)
+
 ![IMG_7970](https://github.com/user-attachments/assets/e4a93bc2-d413-4159-a34c-4c41d56ef4b0)
 
+![IMG_6833](https://github.com/user-attachments/assets/c5dfb0fc-b5be-4838-a81e-ef3c33604a11)
+
+![IMG_6928](https://github.com/user-attachments/assets/ff1d03b8-eb40-4d1a-b804-115242582663)
