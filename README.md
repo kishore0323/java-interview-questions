@@ -10,8 +10,6 @@
 * *[Design Patterns](DesignPatterns.md)*
 * *[Java Programs](java-programs.md)*
 * *[Java String Methods](java-string-methods.md)*
-* *[JSP Interview Questions](jsp-questions.md)*
-* *[Servlets Interview Questions](servlets-questions.md)*
 * *[Java Design Pattern Questions](java-design-pattern-questions.md)*
 * *[Java Multiple Choice Questions](java-multiple-choice-questions-answers.md)*
 * *[Microservices Interview_Questions](Microservices.md)*
