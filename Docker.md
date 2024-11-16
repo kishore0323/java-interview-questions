@@ -2031,21 +2031,45 @@ Deploying a **Spring Boot application** using Docker and running the Docker cont
     -   In the root directory of your project, create a file named `Dockerfile` (no extension).
         
     -   Example `Dockerfile`:
-        
-`Use an official OpenJDK runtime as a parent image
-FROM openjdk:11-jre-slim`
+     
 
-`Set the working directory in the container
-WORKDIR /app`
+Stage 1: Build the Spring Boot application
+Use an official Maven image to build the application
+`FROM maven:3.8.5-openjdk-11 AS build`
 
-`Copy the application JAR file to the container
-COPY target/your-app.jar app.jar`
+Set the working directory inside the container
+`WORKDIR /app`
 
-`Expose the application port
-EXPOSE 8080`
+Copy the Maven configuration files to the container
+`COPY pom.xml .
+COPY src ./src`
 
-`Command to run the JAR file
-ENTRYPOINT ["java", "-jar", "app.jar”]`
+Package the application (build the jar)
+`RUN mvn clean package -DskipTests`
+
+Stage 2: Create a lightweight runtime environment for the application
+Use an official OpenJDK image for the runtime
+`FROM openjdk:11-jre-slim`
+
+Set environment variables (if needed)
+`ENV SPRING_PROFILES_ACTIVE=prod
+ENV JAVA_OPTS=""`
+
+Set the working directory inside the container
+`WORKDIR /app`
+
+Copy the jar file from the first stage to the current stage
+`COPY --from=build /app/target/your-app.jar app.jar`
+
+Expose the application port (default is 8080 for Spring Boot)
+`EXPOSE 8080`
+
+Add a volume for external configuration or logs (optional)
+`VOLUME /app/config
+VOLUME /app/logs`
+
+Define the entrypoint command to run the jar file
+`ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]`
         
  Replace `your-app.jar` with the name of the JAR file generated from your project.
         
@@ -2199,4 +2223,71 @@ ENTRYPOINT ["java", "-jar", "app.jar”]`
 1.  Use **AWS CloudWatch** for monitoring logs, performance, and resource utilization.
 2.  Set up **Auto Scaling Groups** if you plan to have multiple EC2 instances to handle increased traffic.
 
-By following these steps, you can successfully deploy a Spring Boot application using Docker on an AWS EC2 instance.
+### **Docker Commands to Manage the Spring Boot Application**
+
+#### **1. Building the Docker Image**
+`docker build -t your-app:latest .` 
+
+-   `-t your-app:latest`: Tags the image with the name `your-app` and version `latest`.
+-   `.`: Indicates the Dockerfile's location (current directory).
+
+#### **2. Running the Docker Container**
+`docker run -d -p 8080:8080 --name your-app-container -v /local/config:/app/config -v /local/logs:/app/logs your-app:latest` 
+
+-   `-d`: Run the container in detached mode (in the background).
+-   `-p 8080:8080`: Maps port 8080 on the host to port 8080 in the container.
+-   `--name your-app-container`: Assigns a name to the container.
+-   `-v /local/config:/app/config`: Mounts the local directory `/local/config` to the container’s `/app/config`.
+-   `-v /local/logs:/app/logs`: Mounts the local directory `/local/logs` to the container’s `/app/logs`.
+
+#### **3. View Container Logs**
+`docker logs your-app-container` 
+
+#### **4. Stop and Remove the Container**
+
+-   **Stop** the container:
+    `docker stop your-app-container` 
+    
+-   **Remove** the container:
+    `docker rm your-app-container` 
+
+#### **5. Inspect the Running Container**
+`docker inspect your-app-container` 
+
+#### **6. Pass Environment Variables at Runtime**
+`docker run -d -p 8080:8080 --name your-app-container -e SPRING_PROFILES_ACTIVE=dev your-app:latest` 
+
+-   `-e SPRING_PROFILES_ACTIVE=dev`: Passes the environment variable to the container at runtime.
+
+#### **7. Cleanup Unused Images and Containers**
+Remove unused containers
+`docker container prune`
+
+Remove unused images
+`docker image prune`
+
+If your Spring Boot application relies on other services (like a database), you can use Docker Compose to manage multiple containers. Here’s an example docker-compose.yml:
+```
+version: '3'
+services:
+  app:
+    image: your-app:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: yourdb
+    ports:
+      - "5432:5432"
+
+```
+
+`docker-compose up -d`
+`docker-compose down`
