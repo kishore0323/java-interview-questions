@@ -9,16 +9,14 @@
 * *[Hibernate Interview Questions](hibernate-questions.md)*
 * *[Design Patterns](DesignPatterns.md)*
 * *[Java Programs](java-programs.md)*
-* *[Java String Methods](java-string-methods.md)*
 * *[Java Design Pattern Questions](java-design-pattern-questions.md)*
-* *[Java Multiple Choice Questions](java-multiple-choice-questions-answers.md)*
 * *[Microservices Interview_Questions](Microservices.md)*
 * *[Angular Interview_Questions](Angular-questions.md)*
 * *[Javascript Interview Questions](Javascript.md)*
 * *[Behavioral Interview Questions](Behavioral_Interview_Questions.md)*
 * *[Full Stack Quick Questions](FullStackQuickView.md)*
 * *[HTML Interview Questions](HTML.md)*
-* *[CSS Interview Questions](CSSL.md)*
+* *[CSS Interview Questions](CSS.md)*
 * *[Docker Interview Questions](Docker.md)*
 * *[Kubernetes Interview Questions](Kubernetes.md)*
 * *[DataStructures and Algorithms](https://github.com/sudheerj/datastructures-algorithms/blob/master/README.md)*
