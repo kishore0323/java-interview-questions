@@ -2010,9 +2010,9 @@ d) `export DOCKER_TRUSTED=1`<br>
 
 
 
+# Deploying a Spring Boot application using Docker and running the Docker container on AWS EC2 instance 
 
-
-#### Deploying a **Spring Boot application** using Docker and running the Docker container on an **AWS EC2 instance** involves multiple steps, including Dockerizing the Spring Boot application, building a Docker image, running it locally, pushing it to the EC2 instance, and finally running the Docker container on EC2. Here’s a comprehensive guide:
+Deployment process involves multiple steps, including Dockerizing the Spring Boot application, building a Docker image, running it locally, pushing it to the EC2 instance, and finally running the Docker container on EC2. Here’s a comprehensive guide:
 
 ### **Step 1: Dockerize Your Spring Boot Application**
 
