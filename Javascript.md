@@ -8,18 +8,6 @@ This repository contains a few hundred curated JavaScript interview questions wi
 
 ---
 
-<div>
-<p align="center">
-  <a href="https://www.greatfrontend.com/questions/js?utm_source=github&utm_medium=referral&utm_campaign=top-js-qns&gnrs=yangshun">
-    <img src="./images/greatfrontend-js-banner4x.png" alt="GreatFrontEnd JavaScript Interview Questions" width="100%">
-  </a>
-</p>
-</div>
-
-> 💡 Nail JavaScript interviews with questions and solutions from ex-interviewers! [Try GreatFrontEnd →](https://www.greatfrontend.com/questions/js?utm_source=github&utm_medium=referral&utm_campaign=top-js-qns&gnrs=yangshun) 💡
-
----
-
 ## Table of Contents (Top Questions)
 
 This list contains the top essential questions that are frequently-asked during Front End Engineer interviews. Concise versions of the answers are presented here with links to elaborate versions for further reading. This section is great if you need a quick refresher of the most important concepts.
