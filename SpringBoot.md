@@ -4672,3 +4672,6 @@ public class AuditController {
 -   **Best for**: Managing security and routing for multiple microservices in a centralized manner.
 
 Each method has its strengths, and in many cases, combining multiple techniques (e.g., HTTPS + JWT + OAuth2) is the best approach to ensure robust API security in Spring Boot. Choose the methods that best fit your requirements, context, and threat model.
+
+
+![Screenshot 2024-11-17 at 5 26 56 PM](https://github.com/user-attachments/assets/e088ba91-e855-478b-9a3c-26788d0dca05)
