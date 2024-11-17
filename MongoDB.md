@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-* *[MongoDB Commands](mongodb-commands)*
+* *[MongoDB Commands](MongoDB Commands)*
 * *[MongoDB Coding Practice](mongodb-code)*
 
 <br/>
