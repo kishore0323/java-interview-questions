@@ -2012,7 +2012,7 @@ d) `export DOCKER_TRUSTED=1`<br>
 
 
 
-Deploying a **Spring Boot application** using Docker and running the Docker container on an **AWS EC2 instance** involves multiple steps, including Dockerizing the Spring Boot application, building a Docker image, running it locally, pushing it to the EC2 instance, and finally running the Docker container on EC2. Here’s a comprehensive guide:
+#### Deploying a **Spring Boot application** using Docker and running the Docker container on an **AWS EC2 instance** involves multiple steps, including Dockerizing the Spring Boot application, building a Docker image, running it locally, pushing it to the EC2 instance, and finally running the Docker container on EC2. Here’s a comprehensive guide:
 
 ### **Step 1: Dockerize Your Spring Boot Application**
 
@@ -2032,62 +2032,33 @@ Deploying a **Spring Boot application** using Docker and running the Docker cont
         
     -   Example `Dockerfile`:
      
-
-Stage 1: Build the Spring Boot application
-Use an official Maven image to build the application
-`FROM maven:3.8.5-openjdk-11 AS build`
-
-Set the working directory inside the container
-`WORKDIR /app`
-
-Copy the Maven configuration files to the container
-`COPY pom.xml .
-COPY src ./src`
-
-Package the application (build the jar)
-`RUN mvn clean package -DskipTests`
-
-Stage 2: Create a lightweight runtime environment for the application
-Use an official OpenJDK image for the runtime
-`FROM openjdk:11-jre-slim`
-
-Set environment variables (if needed)
-`ENV SPRING_PROFILES_ACTIVE=prod
-ENV JAVA_OPTS=""`
-
-Set the working directory inside the container
-`WORKDIR /app`
-
-Copy the jar file from the first stage to the current stage
-`COPY --from=build /app/target/your-app.jar app.jar`
-
-Expose the application port (default is 8080 for Spring Boot)
-`EXPOSE 8080`
-
-Add a volume for external configuration or logs (optional)
-`VOLUME /app/config
-VOLUME /app/logs`
-
-Define the entrypoint command to run the jar file
-`ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]`
-        
- Replace `your-app.jar` with the name of the JAR file generated from your project.
-        
+```
+FROM maven:3.8.5-openjdk-11 AS build
+WORKDIR /app
+COPY pom.xml 
+COPY src ./src
+RUN mvn clean package -DskipTests
+FROM openjdk:11-jre-slim
+ENV SPRING_PROFILES_ACTIVE=prod
+ENV JAVA_OPTS=""
+WORKDIR /app
+COPY --from=build /app/target/your-app.jar app.jar
+EXPOSE 8080
+VOLUME /app/config
+VOLUME /app/logs
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+```        
 3.  **Build the Docker Image**:
     
     -   Open a terminal in your project directory and build the Docker image:
         `docker build -t your-app:latest .` 
-        
     -   Check if the image is created successfully:
         `docker images` 
         
 4.  **Test the Docker Image Locally** (Optional):
-    
     -   Run the Docker container locally to ensure it works:
         `docker run -p 8080:8080 your-app:latest` 
-        
     -   Open your browser or use `curl` to verify the app at `http://localhost:8080`.
-        
 
 ### **Step 2: Set Up the EC2 Instance**
 
@@ -2109,10 +2080,8 @@ Define the entrypoint command to run the jar file
         -   Open **Port 8080** (or your desired application port) for HTTP access.
     -   Launch the instance and choose a **key pair** for SSH access.
 3.  **Connect to the EC2 Instance**:
-    
     -   Open a terminal and SSH into the EC2 instance using:
         `ssh -i "your-key.pem" ec2-user@your-public-ip` 
-        
     -   Replace `"your-key.pem"` with the name of your key file and `your-public-ip` with the EC2 instance's public IP.
         
 
@@ -2121,119 +2090,87 @@ Define the entrypoint command to run the jar file
 1.  **Update the System**:
     `sudo yum update -y  # For Amazon Linux
     sudo apt update -y  # For Ubuntu` 
-    
 2.  **Install Docker**:
-    
     -   For **Amazon Linux**:
-        `sudo amazon-linux-extras install docker -y` 
-        
+        `sudo amazon-linux-extras install docker -y`   
     -   For **Ubuntu**:
         `sudo apt install docker.io -y` 
-        
 3.  **Start and Enable Docker**:
     `sudo systemctl start docker
     sudo systemctl enable docker` 
-    
 4.  **Add the EC2 user to the Docker group** (optional, allows running Docker without `sudo`):
     `sudo usermod -aG docker ec2-user` 
-    
     -   **Logout and re-login** for the changes to take effect.
 5.  **Verify Docker Installation**:
     `docker --version
-    docker run hello-world` 
+    docker run hello-world`
     
-
 ### **Step 4: Transfer the Docker Image to the EC2 Instance**
 
 1.  **Option 1: Use Docker Hub** (Recommended for easier deployments):
-    
     -   **Create a Docker Hub account** if you don't have one.
-        
     -   **Tag the Docker image**:
         `docker tag your-app:latest your-dockerhub-username/your-app:latest` 
-        
     -   **Log in to Docker Hub**:
         `docker login` 
-        
     -   **Push the Docker image** to Docker Hub:
         `docker push your-dockerhub-username/your-app:latest` 
-        
     -   On the EC2 instance, **pull the Docker image**:
         `docker pull your-dockerhub-username/your-app:latest` 
         
 2.  **Option 2: SCP (Secure Copy) the Image File Directly**:
-    
     -   Save the Docker image to a `.tar` file on your local machine:
         `docker save -o your-app.tar your-app:latest` 
-        
     -   Transfer the `.tar` file to EC2 using `scp`:
         `scp -i "your-key.pem" your-app.tar ec2-user@your-public-ip:/home/ec2-user` 
-        
     -   On the EC2 instance, **load the image**:
         `docker load -i your-app.tar` 
         
-### **Step 5: Run the Docker Container on EC2**
-
+### **Step 5: Run the Docker Container on EC2*
 1.  **Run the Docker Container**:
     `docker run -d -p 8080:8080 your-dockerhub-username/your-app:latest` 
-    
     -   Use the `-d` flag to run the container in detached mode.
     -   Expose the application on **port 8080**.
 2.  **Verify the Container is Running**:
     `docker ps` 
-    
 3.  **Access the Application**:
     -   Navigate to vbnet
         `http://your-public-ip:8080` 
-        
 
 ### **Step 6: Manage the Docker Container**
-
 1.  **View Container Logs**:
     `docker logs <container-id>` 
-    
 2.  **Stop the Container**:
     `docker stop <container-id>` 
-    
 3.  **Restart the Container**:
     `docker start <container-id>` 
-    
 4.  **Remove the Container**:
     `docker rm <container-id>` 
     
-
 ### **Step 7: Optional Enhancements (Load Balancer, HTTPS, Auto-restart)**
 
 1.  **Expose the Application via a Load Balancer** (Optional):
-    
     -   Use **AWS Elastic Load Balancer (ELB)** for better availability and load distribution.
     -   Configure the **Load Balancer** to forward traffic from **port 80** to your application port.
 2.  **Enable HTTPS**:
-    
     -   Use **AWS Certificate Manager** for SSL certificates.
     -   Configure the Load Balancer to handle SSL termination.
 3.  **Auto Restart the Docker Container** (Optional):
-    
     -   Use the `--restart` flag to ensure the container auto-restarts if it fails:
         `docker run -d -p 8080:8080 --restart unless-stopped your-dockerhub-username/your-app:latest` 
-        
-
+      
 ### **Step 8: Monitoring and Scaling (Optional)**
-
 1.  Use **AWS CloudWatch** for monitoring logs, performance, and resource utilization.
 2.  Set up **Auto Scaling Groups** if you plan to have multiple EC2 instances to handle increased traffic.
 
 ### **Docker Commands to Manage the Spring Boot Application**
-
 #### **1. Building the Docker Image**
 `docker build -t your-app:latest .` 
-
 -   `-t your-app:latest`: Tags the image with the name `your-app` and version `latest`.
 -   `.`: Indicates the Dockerfile's location (current directory).
 
 #### **2. Running the Docker Container**
 `docker run -d -p 8080:8080 --name your-app-container -v /local/config:/app/config -v /local/logs:/app/logs your-app:latest` 
-
 -   `-d`: Run the container in detached mode (in the background).
 -   `-p 8080:8080`: Maps port 8080 on the host to port 8080 in the container.
 -   `--name your-app-container`: Assigns a name to the container.
@@ -2244,10 +2181,8 @@ Define the entrypoint command to run the jar file
 `docker logs your-app-container` 
 
 #### **4. Stop and Remove the Container**
-
 -   **Stop** the container:
     `docker stop your-app-container` 
-    
 -   **Remove** the container:
     `docker rm your-app-container` 
 
@@ -2256,15 +2191,12 @@ Define the entrypoint command to run the jar file
 
 #### **6. Pass Environment Variables at Runtime**
 `docker run -d -p 8080:8080 --name your-app-container -e SPRING_PROFILES_ACTIVE=dev your-app:latest` 
-
 -   `-e SPRING_PROFILES_ACTIVE=dev`: Passes the environment variable to the container at runtime.
 
 #### **7. Cleanup Unused Images and Containers**
-Remove unused containers
-`docker container prune`
+Remove unused containers `docker container prune`
 
-Remove unused images
-`docker image prune`
+Remove unused images `docker image prune`
 
 If your Spring Boot application relies on other services (like a database), you can use Docker Compose to manage multiple containers. Here’s an example docker-compose.yml:
 ```
