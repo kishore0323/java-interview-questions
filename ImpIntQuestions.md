@@ -1035,10 +1035,181 @@ Podman is a versatile tool for container management, particularly for local deve
 
 
 
+# What Are Structural Directives
+
+Structural directives in Angular are directives that change the structure of the DOM by adding or removing elements. They usually use the `*` (asterisk) syntax to indicate that they modify the structure. Here's a detailed overview of structural directives available in Angular:
+
+Structural directives are responsible for altering the layout by adding or removing DOM elements. They do not merely manipulate styles or attributes but change the structure of the document itself. Examples include `*ngIf`, `*ngFor`, and `*ngSwitch`.
+
+### **Built-in Structural Directives**
+
+1.  **`*ngIf` Directive**
+    
+    -   Used to conditionally include or exclude an element from the DOM.
+    -   If the expression evaluates to `true`, the element is included; if `false`, it is removed.
+    
+    ```
+    <div *ngIf="isLoggedIn">
+      Welcome, user!
+    </div>
+    ```
+    
+    #### **With `else` Clause**:
+    
+    ```
+    <div *ngIf="isLoggedIn; else loggedOut">
+      Welcome, user!
+    </div>
+    
+    <ng-template #loggedOut>
+      <p>Please log in.</p>
+    </ng-template>
+    ``` 
+    
+    -   The `*ngIf` removes or adds the element to the DOM based on the `isLoggedIn` value.
+    -   You can also use an `else` clause to handle the `false` case.
+2.  **`*ngFor` Directive**
+    
+    -   Used to iterate over a list of items and render them.
+    -   Creates a template for each item in a collection.
+    ```
+    <ul>
+      <li *ngFor="let item of items">{{ item }}</li>
+    </ul>
+    ```
+```
+<ul>
+  <li *ngFor="let item of items; let i = index">
+        {{ i + 1 }}. {{ item }}
+      </li>
+    </ul>
+```
+  
+    -  The `*ngFor` directive repeats the `<li>` element for each item in the `items` array.
+    -  You can also access the index of the item using `let i = index.
+ 
+ 
+```
+    <ul>
+      <li *ngFor="let item of items; trackBy: trackByFn">{{ item.name }}</li>
+    </ul>
+    
+    trackByFn(index: number, item: any): number {
+      return item.id; // unique id for each item
+    }
+    ``` 
+    
+    -   `trackBy` improves performance by identifying items uniquely, avoiding unnecessary re-renders.
+    
+    
+3.  **`*ngSwitch` Directive**
+    
+    -   Used to conditionally display one of multiple elements based on a switch condition.
+    -   It consists of `ngSwitch`, `*ngSwitchCase`, and `*ngSwitchDefault`.
+    
+    ```
+    <div [ngSwitch]="userRole">
+      <p *ngSwitchCase="'admin'">Admin Panel</p>
+      <p *ngSwitchCase="'user'">User Dashboard</p>
+      <p *ngSwitchCase="'guest'">Guest View</p>
+      <p *ngSwitchDefault>Unknown Role</p>
+    </div>
+    ```
+    
+    #### **Explanation**:
+    
+    -   The `[ngSwitch]` directive binds to a value (`userRole`), and `*ngSwitchCase` handles different cases.
+    -   The `*ngSwitchDefault` provides a fallback if no case matches.
+
+### **Custom Structural Directives**
+
+You can also create your own structural directives to manipulate the DOM based on your application's needs.
+
+#### **Example** - Creating a Custom Structural Directive (`*appUnless`)
+
+The following example creates a custom structural directive similar to `*ngIf`, but it shows an element if a condition is `false`.
+
+##### **Step 1: Create the Directive**
+
+```
+// unless.directive.ts
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[appUnless]'
+})
+export class UnlessDirective {
+  private hasView = false;
+
+  constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef) {}
+
+  @Input() set appUnless(condition: boolean) {
+    if (!condition && !this.hasView) {
+      this.viewContainer.createEmbeddedView(this.templateRef);
+      this.hasView = true;
+    } else if (condition && this.hasView) {
+      this.viewContainer.clear();
+      this.hasView = false;
+    }
+  }
+}
+``` 
+
+##### **Step 2: Use the Custom Directive**
+```
+<div *appUnless="isLoggedIn">
+  You are not logged in.
+</div>
+``` 
+
+#### **Explanation**:
+
+-   `TemplateRef` represents the template to render.
+-   `ViewContainerRef` is the container where the template is added or removed.
+-   `appUnless` is the custom directive that acts opposite to `*ngIf`.
+
+### **Key Differences Between Structural Directives and Attribute Directives**
+
+![Screenshot 2024-11-19 at 7 20 02 PM](https://github.com/user-attachments/assets/2bd17eca-366d-4fd0-922c-842d2f97798d)
+
+### **Best Practices for Using Structural Directives**
+
+1.  **Use `*ngIf` over `[hidden]`** when you need to remove an element from the DOM completely to optimize performance.
+2.  **Use `trackBy` with `*ngFor`** when dealing with large lists to improve rendering performance.
+3.  **Avoid nesting multiple `*ngIf` and `*ngFor`** within the same element. Consider using `<ng-container>` for complex conditions.
+4.  **Use `*ngSwitch` for multiple conditions** to make the template more readable than using multiple `*ngIf`.
+5.  **Use `ng-template` for reusable templates** and complex condition handling.
+
+### **Advanced Structural Directive Techniques**
+
+#### **Using `<ng-template>`**
+
+`<ng-template>` is used as a placeholder for structural directives. It does not render any content on its own but can be used to define templates.
+
+##### **Example**:
+
+```<ng-template #noData>
+  <p>No data available.</p>
+</ng-template>
+
+<div *ngIf="data.length > 0; else noData">
+  <ul>
+    <li *ngFor="let item of data">{{ item }}</li>
+  </ul>
+</div>
+```
+
+-   `<ng-template>` acts as a container for a template that will be rendered conditionally.
+-   The `#noData` template is used when there is no data available.
+
+### **Summary of Common Structural Directives**
+
+![Screenshot 2024-11-19 at 7 15 40 PM](https://github.com/user-attachments/assets/2c1b70d2-210b-49c4-9b05-f35f1edf6eef)
 
 
 
 
+# Behavioral Directives
 
 Behavioral directives in Angular, also known as **attribute directives**, are directives that are used to change the behavior or appearance of an element, component, or another directive. Unlike **structural directives** that manipulate the DOM structure (adding or removing elements), **behavioral directives** are responsible for manipulating the properties, styles, classes, or other attributes of elements without altering the DOM structure.
 
