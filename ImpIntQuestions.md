@@ -1032,3 +1032,213 @@ Although Podman is not a direct runtime for Kubernetes, it integrates with the e
 
 Podman is a versatile tool for container management, particularly for local development, security-conscious environments, and OCI-compliant workflows that align with Kubernetes operations.
 
+
+
+
+
+
+
+
+
+Behavioral directives in Angular, also known as **attribute directives**, are directives that are used to change the behavior or appearance of an element, component, or another directive. Unlike **structural directives** that manipulate the DOM structure (adding or removing elements), **behavioral directives** are responsible for manipulating the properties, styles, classes, or other attributes of elements without altering the DOM structure.
+
+### **Key Concepts of Behavioral Directives**
+
+-   Behavioral directives are primarily used to **change the appearance** or **behavior** of elements.
+-   They are applied like **attributes** to elements in the template, hence the name **attribute directives**.
+-   Examples include modifying styles, adding/removing CSS classes, managing event listeners, or any other visual effect that does not require a change in the DOM structure.
+
+### **Built-in Behavioral Directives in Angular**
+
+1.  **`ngClass`**
+    -   Dynamically adds or removes CSS classes on an HTML element based on conditions.
+    -   It accepts a string, an object, or an array of class names.
+    
+    ```
+    <div [ngClass]="{'active': isActive, 'disabled': !isActive}">
+      Conditional Classes Example
+    </div>
+    ```
+    
+    #### **Explanation**:
+    
+    -   In the above example, the `active` class is applied if `isActive` is `true`, and the `disabled` class is applied if `isActive` is `false`.
+    ```
+    <div [ngClass]="['class1', 'class2', isActive ? 'active' : 'inactive']">
+      Using an Array with ngClass
+    </div>
+    ``` 
+    
+2.  **`ngStyle`**
+    
+    -   Dynamically sets inline styles for an HTML element based on conditions.
+    -   It accepts an object where the key is the style property, and the value is the style value.
+    
+    ```
+    <div [ngStyle]="{'color': textColor, 'font-size': fontSize}">
+      Dynamic Styles Example
+    </div>
+    ``` 
+    -   The color and font-size are set dynamically based on the `textColor` and `fontSize` variables.
+    
+3.  **`ngModel`**
+    
+    -   Two-way data binding directive used for binding form inputs.
+    -   It synchronizes the value in the component and the view, making it ideal for forms.
+    
+    ```
+    <input [(ngModel)]="userInput" placeholder="Type something">
+    <p>{{ userInput }}</p>
+    ``` 
+    
+    -   The `[(ngModel)]` binds the input field to the `userInput` variable, allowing changes in the input to reflect immediately in the view.
+
+### **Creating a Custom Behavioral Directive**
+
+Behavioral directives are not limited to built-in ones; you can also create your own custom attribute directives to encapsulate reusable behavior.
+
+#### **Example - Creating a Custom Directive (`appHighlight`)**
+
+This example creates a custom directive to change the background color of an element when the mouse hovers over it.
+
+##### **Step 1: Create the Directive**
+
+```
+// highlight.directive.ts
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+  @Input('appHighlight') highlightColor: string = 'yellow'; // Default color
+
+  constructor(private el: ElementRef) {}
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight(this.highlightColor);
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight('');
+  }
+
+  private highlight(color: string) {
+    this.el.nativeElement.style.backgroundColor = color;
+  }
+}
+``` 
+
+##### **Step 2: Use the Custom Directive**
+
+```
+<p appHighlight="lightblue">Hover over this text to highlight it in light blue.</p>
+<p appHighlight>Hover over this text to highlight it with the default color.</p>
+``` 
+
+#### **Explanation**:
+
+-   The `appHighlight` directive changes the background color of the element when the mouse enters or leaves.
+-   `ElementRef` is used to access the DOM element and manipulate its styles.
+-   `@HostListener` is used to listen to DOM events like `mouseenter` and `mouseleave`.
+
+### **Common Angular Built-in Behavioral Directives**
+
+![Screenshot 2024-11-19 at 7 08 11 PM](https://github.com/user-attachments/assets/90974636-2dfa-4e94-ba07-373906fba830)
+
+### **HostBinding and HostListener for Custom Directives**
+
+In custom behavioral directives, you often use `@HostBinding` and `@HostListener` to manipulate the behavior of the host element.
+
+#### **`@HostBinding` Example**
+
+`@HostBinding` is used to bind a property of the host element directly.
+
+```
+@Directive({
+  selector: '[appBorderHighlight]'
+})
+export class BorderHighlightDirective {
+  @HostBinding('style.border') border: string = '';
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.border = '2px solid green';
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.border = '';
+  }
+}
+``` 
+
+#### **Explanation**:
+
+-   `@HostBinding('style.border')` binds the `style.border` property of the host element.
+-   The border changes when the user hovers over the element.
+
+### **Additional Concepts Related to Behavioral Directives**
+
+1.  **Directive Life Cycle Hooks**
+    
+    -   Like components, directives also have lifecycle hooks like `ngOnInit`, `ngOnChanges`, `ngAfterViewInit`, etc., to control initialization and change detection.
+    
+    ```
+    import { Directive, OnInit } from '@angular/core';
+    
+    @Directive({
+      selector: '[appSample]'
+    })
+    export class SampleDirective implements OnInit {
+      ngOnInit() {
+        console.log('Directive Initialized');
+      }
+    }
+    ``` 
+    
+2.  **Using Dependency Injection in Directives**
+    
+    -   You can inject services into a directive to access data or perform additional tasks.
+    
+    ```
+    @Directive({
+      selector: '[appTooltip]'
+    })
+    export class TooltipDirective {
+      constructor(private tooltipService: TooltipService) {}
+    
+      @HostListener('mouseenter') showTooltip() {
+        this.tooltipService.show();
+      }
+    
+      @HostListener('mouseleave') hideTooltip() {
+        this.tooltipService.hide();
+      }
+    }
+    ```
+3.  **Passing Data to a Directive via Input**
+    
+    -   Just like components, you can pass data to directives using `@Input`.
+        
+    ```
+    @Directive({
+      selector: '[appChangeColor]'
+    })
+    export class ChangeColorDirective {
+      @Input('appChangeColor') color: string = 'blue';
+    
+      constructor(private el: ElementRef) {
+        this.el.nativeElement.style.color = this.color;
+      }
+    }
+    ```
+   
+### **Best Practices for Using Behavioral Directives**
+
+1.  **Keep Directives Focused**: A directive should do one thing well. Avoid making directives that do multiple tasks.
+2.  **Prefer Built-in Directives**: Whenever possible, use built-in directives like `ngClass` and `ngStyle` for common use cases.
+3.  **Avoid DOM Manipulation**: Avoid manipulating the DOM directly. Use Angular's APIs like `Renderer2` to ensure cross-browser compatibility.
+4.  **Use `@HostListener` for Event Binding**: Instead of directly attaching event listeners to the DOM, use `@HostListener` to make it declarative.
+5.  **Keep Logic Simple**: Try to keep the logic within directives simple. Complex logic should be handled in services or components.
+
+### Summary of Behavioral Directives in Angular
+![Screenshot 2024-11-19 at 7 00 23 PM](https://github.com/user-attachments/assets/d786d1fd-530d-4f6e-b98c-a6cc67eb5419)
