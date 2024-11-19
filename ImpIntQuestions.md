@@ -694,9 +694,11 @@ Each method has its strengths, and in many cases, combining multiple techniques 
 
 
 
-Auto-scaling in Kubernetes involves adjusting the number of running pods based on the resource demands of your application. Kubernetes provides several ways to automatically scale your application to handle varying loads. Below, I'll explain the different types of auto-scaling in Kubernetes, how they work, and how to configure them:
 
-### **Types of Auto-Scaling in Kubernetes**
+
+# Types of Auto-Scaling in Kubernetes
+
+Auto-scaling in Kubernetes involves adjusting the number of running pods based on the resource demands of your application. Kubernetes provides several ways to automatically scale your application to handle varying loads. Below, I'll explain the different types of auto-scaling in Kubernetes, how they work, and how to configure them:
 
 1.  **Horizontal Pod Autoscaler (HPA)**:
     
