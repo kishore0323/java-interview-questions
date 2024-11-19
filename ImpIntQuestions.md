@@ -197,3 +197,496 @@ By understanding the strengths and limitations of each framework, you can choose
 
 
 
+# List of security measures for protecting REST APIs in Spring Boot
+
+In Spring Boot, protecting a REST API is crucial for ensuring that only authorized and authenticated clients can access your resources. Below are some of the most common and effective ways to protect a REST API in Spring Boot:
+
+### 1. **Authentication and Authorization with Spring Security**
+
+Spring Security is the standard way to secure Spring applications. It provides a comprehensive set of tools to handle authentication and authorization.
+
+#### a. **Basic Authentication**
+
+-   **Description**: A simple way to protect APIs using a username and password in the HTTP headers. It's easy to set up but generally not recommended for production without HTTPS due to security vulnerabilities.
+-   **Best for**: Internal or quick prototypes; not ideal for production without additional security.
+
+**Configuration**:
+```
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable() // Disable CSRF for stateless APIs
+            .authorizeRequests()
+            .anyRequest().authenticated()
+            .and()
+            .httpBasic(); // Use Basic Authentication
+    }
+}
+```
+
+#### b. **JWT (JSON Web Token) Authentication**
+
+-   **Description**: JWT is a token-based authentication system. A user logs in with their credentials, receives a token, and uses that token for subsequent API calls. The token contains encoded user data and can be verified without accessing a database.
+-   **Best for**: Stateless applications, microservices, and scalable architectures.
+
+**Steps**:
+
+1.  Implement user authentication.
+2.  Generate a JWT token on successful login.
+3.  Protect endpoints with JWT verification.
+
+**Example**:
+
+**Security Configuration**:
+```
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/auth/**").permitAll() // Allow authentication endpoint
+            .anyRequest().authenticated()
+            .and()
+            .addFilterBefore(new JwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+}
+```
+
+#### c. **OAuth2 and OpenID Connect**
+
+-   **Description**: OAuth2 is a framework that allows third-party services to exchange information securely without exposing credentials. OpenID Connect (OIDC) is an identity layer built on top of OAuth2.
+-   **Best for**: Integrating third-party identity providers like Google, Facebook, or corporate Single Sign-On (SSO).
+
+**Example** using OAuth2 with Spring Boot Starter:
+
+**application.yml**:
+```
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: YOUR_GOOGLE_CLIENT_ID
+            client-secret: YOUR_GOOGLE_CLIENT_SECRET
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: profile, email
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo 
+```
+**Security Configuration**:
+```
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .authorizeRequests()
+            .anyRequest().authenticated()
+            .and()
+            .oauth2Login(); // Use OAuth2 login
+    }
+}
+```
+
+### 2. **Using HTTPS (SSL/TLS)**
+
+-   **Description**: Protect communication by using HTTPS instead of HTTP. HTTPS encrypts the communication channel, protecting sensitive data like tokens, credentials, and payloads.
+-   **Best for**: All production APIs, securing data in transit.
+
+**Steps**:
+1.  Generate an SSL certificate (self-signed for testing, CA-signed for production).
+2.  Configure Spring Boot to use the certificate.
+
+**Example (`application.yml`)**:
+```
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.jks
+    key-store-password: password
+    key-alias: my-alias
+```
+### 3. **API Rate Limiting (Throttling)**
+
+-   **Description**: Implement rate limiting to prevent abuse by limiting the number of requests per user or client IP. This can be done using filters or third-party libraries.
+-   **Best for**: Protecting against DDoS attacks, API abuse, and controlling access rates.
+
+**Example using a Filter**:
+```
+import org.springframework.stereotype.Component;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@Component
+public class RateLimitingFilter implements Filter {
+
+    private final ConcurrentHashMap<String, AtomicInteger> requestCountsPerIpAddress = new ConcurrentHashMap<>();
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        String clientIp = request.getRemoteAddr();
+        requestCountsPerIpAddress.putIfAbsent(clientIp, new AtomicInteger(0));
+        int requestCount = requestCountsPerIpAddress.get(clientIp).incrementAndGet();
+
+        if (requestCount > 100) { // Limit to 100 requests per window (e.g., per minute)
+            throw new ServletException("Too many requests");
+        }
+
+        chain.doFilter(request, response);
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {}
+
+    @Override
+    public void destroy() {}
+}
+```
+
+### 4. **CSRF (Cross-Site Request Forgery) Protection**
+
+-   **Description**: CSRF attacks trick users into performing actions they didn't intend. To protect against CSRF, you can use the built-in Spring Security CSRF protection.
+-   **Best for**: Protecting state-changing operations (like POST, PUT, DELETE) in web applications.
+
+**Enable CSRF Protection**:
+```
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Enable CSRF with Cookie-based token
+            .and()
+            .authorizeRequests()
+            .anyRequest().authenticated();
+    }
+}
+``` 
+
+### 5. **CORS (Cross-Origin Resource Sharing) Configuration**
+
+-   **Description**: If your API needs to be accessed from web applications hosted on different domains, you'll need to configure CORS to allow specific origins.
+-   **Best for**: Controlling which domains can access your API.
+
+**Configuration using `@CrossOrigin` annotation**:
+```
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@CrossOrigin(origins = "https://trusted-domain.com")
+public class MyController {
+
+    @GetMapping("/data")
+    public String getData() {
+        return "Hello, World!";
+    }
+}
+``` 
+
+**Global CORS Configuration**:
+```
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig {
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("https://trusted-domain.com")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowCredentials(true);
+            }
+        };
+    }
+}
+``` 
+
+### 6. **Input Validation**
+
+-   **Description**: Validate incoming data to ensure it's safe and in the expected format. This helps protect against attacks like SQL injection and malicious payloads.
+-   **Best for**: Ensuring data integrity and preventing injections.
+
+**Example using `@Valid` annotation**:
+```
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class UserRequest {
+    @NotNull
+    private String username;
+
+    @Size(min = 8, message = "Password must be at least 8 characters")
+    private String password;
+
+    // Getters and Setters
+}
+```
+**Controller**:
+```import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+
+@RestController
+public class UserController {
+
+    @PostMapping("/user")
+    public String createUser(@Valid @RequestBody UserRequest userRequest) {
+        return "User created!";
+    }
+}
+``` 
+
+### 7. **API Key Authentication**
+
+**API Key Authentication** is another way to protect your REST API in Spring Boot by issuing and validating unique keys for clients. Below are the details:
+
+-   **Description**: API Key Authentication involves generating a unique key for each client, which they must include in the request headers to access your API. The server validates the API key before processing the request.
+-   **Best for**: Simple scenarios, such as allowing access to trusted services, internal APIs, or providing different access levels for various clients.
+
+**Example** using an API Key Validator Filter:
+
+**Filter for API Key Validation**:
+
+```
+import org.springframework.stereotype.Component;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+
+@Component
+public class ApiKeyFilter implements Filter {
+
+    private static final String API_KEY = "123456789"; // Example API key, ideally store securely
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String apiKey = httpRequest.getHeader("X-API-KEY");
+
+        if (API_KEY.equals(apiKey)) {
+            chain.doFilter(request, response);
+        } else {
+            throw new ServletException("Invalid API Key");
+        }
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {}
+
+    @Override
+    public void destroy() {}
+}
+```
+
+**Configuration**:
+```import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class ApiKeyConfig implements WebMvcConfigurer {
+    // Add any additional API key configurations if needed.
+}
+```
+
+### 8. **Token-Based Authentication (Custom Tokens)**
+
+-   **Description**: Instead of using standard JWT, you can create a custom token-based mechanism. This involves issuing a custom token to the client upon authentication and validating it for each request.
+-   **Best for**: Cases where you need a custom token format or when JWT does not meet specific requirements.
+
+### 9. **HMAC (Hash-Based Message Authentication Code)**
+
+-   **Description**: Use HMAC for authentication by signing API requests with a secret key. The server validates the signature to ensure that the data hasn’t been tampered with and that the client has the correct secret key.
+-   **Best for**: Ensuring data integrity and authenticity, particularly in systems where data verification is critical.
+
+### 10. **mTLS (Mutual TLS)**
+
+-   **Description**: Mutual TLS is a way to authenticate both the client and the server by exchanging certificates. The client and the server both have certificates, and they verify each other's certificates during the handshake.
+-   **Best for**: High-security environments, enterprise-level APIs, scenarios requiring client verification.
+
+**Steps**:
+
+1.  Obtain certificates for both server and clients.
+2.  Configure Spring Boot to require client certificates.
+
+**Example (`application.yml`)**:
+```
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:server-keystore.jks
+    key-store-password: password
+    trust-store: classpath:client-truststore.jks
+    trust-store-password: password
+    client-auth: need` 
+```
+### 11. **Role-Based Access Control (RBAC)**
+
+-   **Description**: Implement roles to manage access permissions at different levels. Use `@PreAuthorize`, `@Secured`, or `@RolesAllowed` annotations to control who can access specific endpoints.
+-   **Best for**: APIs with multiple roles (e.g., Admin, User, Guest) where access needs to be restricted based on roles.
+
+**Example**:
+```import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class AdminController {
+
+    @GetMapping("/admin")
+    @PreAuthorize("hasRole('ADMIN')") // Only users with ADMIN role can access
+    public String adminEndpoint() {
+        return "Hello, Admin!";
+    }
+}
+``` 
+
+### 12. **IP Whitelisting/Blacklisting**
+
+-   **Description**: Restrict access based on the client's IP address by maintaining a whitelist (allowed IPs) or blacklist (blocked IPs).
+-   **Best for**: Internal APIs or scenarios where certain IPs are known to be trustworthy or malicious.
+
+**Example**:
+```import org.springframework.stereotype.Component;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+@Component
+public class IpWhitelistFilter implements Filter {
+
+    private static final Set<String> WHITELIST = new HashSet<>();
+
+    static {
+        WHITELIST.add("192.168.1.100"); // Add trusted IP addresses
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String clientIp = httpRequest.getRemoteAddr();
+
+        if (WHITELIST.contains(clientIp)) {
+            chain.doFilter(request, response);
+        } else {
+            throw new ServletException("Forbidden: Unauthorized IP address");
+        }
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {}
+
+    @Override
+    public void destroy() {}
+}
+``` 
+
+### 13. **Content Security Policies**
+
+-   **Description**: Implement security headers such as `Content-Security-Policy`, `X-Frame-Options`, `X-Content-Type-Options`, etc., to enhance the security of your API and mitigate attacks like Cross-Site Scripting (XSS) and Clickjacking.
+-   **Best for**: Enhancing API security at the HTTP header level.
+
+### 14. **Database Encryption and Data Masking**
+-   **Description**: Encrypt sensitive data stored in the database and mask or redact sensitive information in API responses. Ensure data encryption both in transit and at rest.
+-   **Best for**: Securing sensitive information like PII (Personally Identifiable Information) and financial data.
+
+### 15. **Security Audits and Logging**
+-   **Description**: Implement comprehensive logging and auditing to track API usage, failed authentication attempts, and suspicious activity. This helps in identifying potential security breaches and debugging issues.
+-   **Best for**: Monitoring security-related events, compliance, and regulatory requirements.
+
+**Example** using Spring Boot’s built-in logging:
+
+```import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class AuditController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuditController.class);
+
+    @GetMapping("/secure-data")
+    public String getSecureData() {
+        logger.info("Access to secure data was made at: {}", System.currentTimeMillis());
+        return "Secure Data";
+    }
+}
+```
+
+### 16. **API Gateway for Centralized Security**
+
+-   **Description**: Use an API Gateway (e.g., **Spring Cloud Gateway**, **Zuul**, **Kong**, **NGINX**) as a central point to handle security features such as rate limiting, SSL termination, token validation, IP filtering, etc.
+-   **Best for**: Managing security and routing for multiple microservices in a centralized manner.
+
+Each method has its strengths, and in many cases, combining multiple techniques (e.g., HTTPS + JWT + OAuth2) is the best approach to ensure robust API security in Spring Boot. Choose the methods that best fit your requirements, context, and threat model.
+
+
+![Screenshot 2024-11-17 at 5 26 56 PM](https://github.com/user-attachments/assets/e088ba91-e855-478b-9a3c-26788d0dca05)
+
+
+
