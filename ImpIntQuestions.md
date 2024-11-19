@@ -693,9 +693,6 @@ Each method has its strengths, and in many cases, combining multiple techniques 
 
 
 
-
-
-
 # Types of Auto-Scaling in Kubernetes
 
 Auto-scaling in Kubernetes involves adjusting the number of running pods based on the resource demands of your application. Kubernetes provides several ways to automatically scale your application to handle varying loads. Below, I'll explain the different types of auto-scaling in Kubernetes, how they work, and how to configure them:
@@ -1034,8 +1031,251 @@ Podman is a versatile tool for container management, particularly for local deve
 
 
 
+# Ways of Angular Components Communication
 
-# What Are Structural Directives
+
+
+### 1. **@Input() and @Output() Decorators**
+
+These decorators are the primary way to communicate between a parent and child component. They allow data to be passed down from a parent to a child and for the child to emit events back up to the parent.
+
+#### **Parent to Child Communication (`@Input()`)**
+
+The `@Input()` decorator allows a parent component to pass data to its child component via property binding.
+
+##### **Example**:
+```
+// Child Component (child.component.ts)
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `<h3>{{ childData }}</h3>`
+})
+export class ChildComponent {
+  @Input() childData: string = ''; // Parent will pass data to this variable
+}
+``` 
+
+`<!-- Parent Component Template (parent.component.html) -->
+<app-child [childData]="'Hello from Parent'"></app-child>` 
+
+#### **Child to Parent Communication (`@Output()`)**
+
+The `@Output()` decorator, combined with `EventEmitter`, allows a child component to emit an event back to the parent.
+
+##### **Example**:
+
+```
+// Child Component (child.component.ts)
+import { Component, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `<button (click)="sendData()">Send Data to Parent</button>`
+})
+export class ChildComponent {
+  @Output() dataEmitter = new EventEmitter<string>();
+
+  sendData() {
+    this.dataEmitter.emit('Data from Child');
+  }
+}
+``` 
+
+`<!-- Parent Component Template (parent.component.html) -->
+<app-child (dataEmitter)="receiveData($event)"></app-child>` 
+
+```
+// Parent Component (parent.component.ts)
+receiveData(data: string) {
+  console.log(data); // Output: "Data from Child"
+}
+``` 
+
+### 2. **Service for Communication (Shared Service)**
+
+Services are a common way to enable communication between unrelated components (i.e., sibling components). By creating a shared service, you can share data or events across components.
+
+#### **Example**:
+
+```
+// Shared Service (shared.service.ts)
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class SharedService {
+  private messageSource = new BehaviorSubject<string>('default message');
+  currentMessage = this.messageSource.asObservable();
+
+  changeMessage(message: string) {
+    this.messageSource.next(message);
+  }
+}
+``` 
+
+```
+// Component A (component-a.component.ts)
+import { Component } from '@angular/core';
+import { SharedService } from './shared.service';
+
+@Component({
+  selector: 'app-component-a',
+  template: `<button (click)="sendMessage()">Send Message</button>`
+})
+export class ComponentA {
+  constructor(private sharedService: SharedService) {}
+
+  sendMessage() {
+    this.sharedService.changeMessage('Hello from Component A');
+  }
+}
+``` 
+
+```
+// Component B (component-b.component.ts)
+import { Component, OnInit } from '@angular/core';
+import { SharedService } from './shared.service';
+
+@Component({
+  selector: 'app-component-b',
+  template: `<h3>{{ message }}</h3>`
+})
+export class ComponentB implements OnInit {
+  message: string = '';
+
+  constructor(private sharedService: SharedService) {}
+
+  ngOnInit() {
+    this.sharedService.currentMessage.subscribe(msg => this.message = msg);
+  }
+}
+``` 
+
+#### **When to Use**:
+
+-   When components are **not directly related** (like sibling components).
+-   When you need to **share complex state** or **data across multiple components**.
+
+### 3. **ViewChild and ContentChild**
+
+`@ViewChild` and `@ContentChild` allow a parent component to directly access a child component’s properties and methods.
+
+#### **@ViewChild**
+
+Used to get a reference to a child component or DOM element within the parent’s template.
+
+##### **Example**:
+
+```
+// Child Component (child.component.ts)
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `<p>Child Component</p>`
+})
+export class ChildComponent {
+  public childMethod() {
+    console.log('Child method called!');
+  }
+}
+``` 
+
+```
+// Parent Component (parent.component.ts)
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { ChildComponent } from './child.component';
+
+@Component({
+  selector: 'app-parent',
+  template: `<app-child></app-child><button (click)="callChildMethod()">Call Child Method</button>`
+})
+export class ParentComponent implements AfterViewInit {
+  @ViewChild(ChildComponent) childComponent!: ChildComponent;
+
+  ngAfterViewInit() {
+    // Access child component methods or properties
+  }
+
+  callChildMethod() {
+    this.childComponent.childMethod(); // Calls the method in the child component
+  }
+}
+``` 
+
+#### **@ContentChild**
+
+Used when you want to access a child component that is projected into a parent component using `<ng-content>`.
+
+### 4. **Input Setter**
+
+Instead of using `@Input()` directly, you can use a setter method to handle changes when the parent passes new data to the child.
+
+#### **Example**:
+```
+// Child Component (child.component.ts)
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `<p>{{ data }}</p>`
+})
+export class ChildComponent {
+  private _data: string = '';
+
+  @Input()
+  set data(value: string) {
+    this._data = value.toUpperCase(); // Custom processing
+  }
+
+  get data(): string {
+    return this._data;
+  }
+}
+``` 
+
+### 5. **EventEmitter (Sibling Components)**
+
+Using a shared service with `EventEmitter` can allow sibling components to communicate through a common mediator (service).
+
+### 6. **BehaviorSubject and Observables in Services**
+
+A `BehaviorSubject` is an RxJS Subject that maintains a current value. It’s useful for sharing state across components.
+
+#### **Example**:
+
+`// Same as the Shared Service example above.` 
+
+### 7. **Local Template Variables**
+
+Local template variables provide a simple way to access child component instances directly in the parent’s template.
+
+``` 
+Parent Component Template (parent.component.html) 
+<app-child #childComponent></app-child>
+<button (click)="childComponent.childMethod()">Call Child Method</button>
+``` 
+
+### 8. **Output with Custom EventEmitter in Service**
+
+You can also create a custom `EventEmitter` in a shared service to handle communication.
+
+### 9. **State Management Libraries (NGRX, NGXS, Akita)**
+
+If your application requires more complex state management, you can use state management libraries like **NGRX**, **NGXS**, or **Akita**.
+
+-   **NGRX**: Inspired by Redux, NGRX manages the state using a global store.
+-   **NGXS**: A state management pattern using observables.
+-   **Akita**: A more flexible state management solution.
+
+### **Summary Table of Communication Methods**
+
+![Screenshot 2024-11-19 at 7 33 37 PM](https://github.com/user-attachments/assets/4b3f08f2-94de-4a01-a04a-40f511ecadfa)
+
+
+# What Are Structural Directives?
 
 Structural directives in Angular are directives that change the structure of the DOM by adding or removing elements. They usually use the `*` (asterisk) syntax to indicate that they modify the structure. Here's a detailed overview of structural directives available in Angular:
 
