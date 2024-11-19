@@ -1,3 +1,4 @@
+# Spring Quartz vs Spring Batch vs Spring Scheduler
 
 Spring provides several ways to schedule and manage tasks within Java applications, with the most popular solutions being **Spring Quartz**, **Spring Batch**, and the built-in **Spring Scheduler**. Each has specific use cases and benefits. Here's a detailed breakdown of when to use each and how they differ:
 
