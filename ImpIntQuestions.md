@@ -1031,9 +1031,177 @@ Podman is a versatile tool for container management, particularly for local deve
 
 
 
+# No ways of hiding elements in Angular
+
+
+### **Using `*ngIf` Directive**
+
+The `*ngIf` directive is the most common way to conditionally hide or show elements in Angular. It removes the element from the DOM when the condition is `false`.
+
+#### **Usage Example**:
+
+```
+<div *ngIf="isVisible">
+  This content is visible when `isVisible` is true.
+</div>
+``` 
+
+#### **Explanation**:
+
+-   The element is added to the DOM only if the `isVisible` variable is `true`.
+-   If `isVisible` is `false`, the element is completely removed from the DOM.
+
+#### **When to Use**:
+
+-   Use `*ngIf` when you want to conditionally add or remove an element from the DOM.
+
+### 2. **Using `hidden` Attribute**
+
+You can use the native `hidden` attribute to hide elements. Unlike `*ngIf`, the `hidden` attribute does not remove the element from the DOM; it simply hides it using CSS (`display: none`).
+
+#### **Usage Example**:
+```
+<div [hidden]="!isVisible">
+  This content is visible when `isVisible` is true.
+</div>
+``` 
+
+#### **Explanation**:
+
+-   The `hidden` attribute is bound to the `isVisible` variable. If `isVisible` is `false`, the element is hidden (but still exists in the DOM).
+
+#### **When to Use**:
+
+-   Use `[hidden]` when you want to hide elements but still keep them in the DOM for layout purposes or data binding.
+
+### 3. **Using Angular `ngClass` Directive**
+
+The `ngClass` directive allows you to conditionally apply or remove CSS classes. You can use this to hide elements by applying CSS styles.
+
+#### **Usage Example**:
+
+```
+<div [ngClass]="{'hidden-class': !isVisible}">
+  This content is visible when `isVisible` is true.
+</div>
+```
+
+```
+/* styles.css */
+.hidden-class {
+  display: none;
+}``` 
+
+#### **Explanation**:
+
+-   In the example above, the `hidden-class` will be applied if `isVisible` is `false`, hiding the element.
+
+#### **When to Use**:
+
+-   Use `ngClass` when you want more control over how to hide the element using CSS classes.
+
+### 4. **Using Angular `ngStyle` Directive**
+
+The `ngStyle` directive allows you to conditionally set inline styles, including `display`, `visibility`, etc.
+
+#### **Usage Example**:
+
+```
+<div [ngStyle]="{ 'display': isVisible ? 'block' : 'none' }">
+  This content is visible when `isVisible` is true.
+</div>
+``` 
+
+#### **Explanation**:
+
+-   The `display` style is set to `none` when `isVisible` is `false`, hiding the element.
+
+#### **When to Use**:
+
+-   Use `ngStyle` for quick styling changes, especially when you need to hide elements based on multiple conditions.
+
+### 5. **CSS-Based Hiding (Conditional Classes with Component Logic)**
+
+You can hide elements using CSS classes directly within the component logic by applying specific classes conditionally.
+
+#### **Usage Example**:
+
+```
+<div class="content" [class.hidden]="!isVisible">
+  This content is visible when `isVisible` is true.
+</div>
+``` 
+
+```
+/* styles.css */
+.hidden {
+  display: none;
+}
+``` 
+
+#### **Explanation**:
+
+-   `[class.hidden]="!isVisible"` conditionally applies the `hidden` class, hiding the element.
+
+#### **When to Use**:
+
+-   Use conditional classes when you have multiple CSS classes that you want to apply conditionally.
+
+### 6. **Using Structural Directive (`*ngIf` with Template Reference)**
+
+Another advanced technique is to use `*ngIf` with a `<ng-template>` to control the visibility.
+
+#### **Usage Example**:
+
+```
+<ng-container *ngIf="isVisible; else hiddenTemplate">
+  <div>
+    This content is visible when `isVisible` is true.
+  </div>
+</ng-container>
+
+<ng-template #hiddenTemplate>
+  <div>
+    This content is visible when `isVisible` is false.
+  </div>
+</ng-template>
+``` 
+
+#### **Explanation**:
+
+-   The `<ng-template>` allows you to have a fallback element/template when `*ngIf` is `false`.
+-   It enables you to manage complex conditions and layouts.
+
+#### **When to Use**:
+
+-   Use `*ngIf` with `<ng-template>` when you need to manage complex conditional rendering with multiple templates.
+
+### 7. **Using `visibility` CSS Property via `ngStyle` or `ngClass`**
+
+Instead of removing or hiding elements with `display: none`, you can use the `visibility` property, which hides the element but still occupies space in the layout.
+
+#### **Usage Example**:
+
+```
+<div [ngStyle]="{ 'visibility': isVisible ? 'visible' : 'hidden' }">
+  This content is visible when `isVisible` is true.
+</div>
+``` 
+
+#### **Explanation**:
+
+-   `visibility: hidden` hides the element without removing it from the document layout.
+
+#### **When to Use**:
+
+-   Use `visibility` when you want to hide elements but still want them to occupy space in the DOM layout.
+
+#### Summary Table of Methods
+
+![Screenshot 2024-11-19 at 7 38 41 PM](https://github.com/user-attachments/assets/e41e5ddb-6d90-4927-998e-c02fb7f311e5)
+
+
 # Ways of Angular Components Communication
-
-
 
 ### 1. **@Input() and @Output() Decorators**
 
