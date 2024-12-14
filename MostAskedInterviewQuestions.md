@@ -19,6 +19,9 @@ L1 and L2 Caching, save, update, persist, load, get
 Entity Object Anotations - Primary Key, Foregin Key, Relational Mappings, Embbeded Id
 Transactional annotation and its strategy 
 
+Microservices
+Monolithic and Microservices Differences, Bounded Context, 12 factors, design principles, disadvantages, sharing data base with MS, Why Stateless, Asysnchronous Communciation in MS, Inter MS communication, Saga Pattern, Circuit Design Pattern, API Gateway, Master Slave DP for database in MS, CQRS DP, Distributed tracing, Design patterns used in MS, Design a systems to serve 1 Million Request per second, Types of Saga patterns. Fault tolerance in MS, No of ways to protect REST APIs, Load Balancer, How to Maintain Transaction across MS. 
+
 # Spring Quartz vs Spring Batch vs Spring Scheduler
 
 Spring provides several ways to schedule and manage tasks within Java applications, with the most popular solutions being **Spring Quartz**, **Spring Batch**, and the built-in **Spring Scheduler**. Each has specific use cases and benefits. Here's a detailed breakdown of when to use each and how they differ:
