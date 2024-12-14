@@ -9,7 +9,7 @@ SpringBoot
 IOC, DI, Application Context, bean context, Bean Scope, Bean Factory, Rest API best practices, Custom Annotation and its types, Custom Exception Handler, Controller and RestController, MVC Flow, How to create singleton and prototype bean,
 Qualifier, Primary, Asyc, Profile, Value Anntoations, Bean life cycle and its annotation, AOP, Advice, Http Status Codes, ComponentsScan
 Spring Security, multiple database Configuration, How to add libraries if spring version has conflict & doesnot support 
-OAuth and OAuth2 Difference, JSON and XML APIs parsing, Swagger Config, 
+OAuth and OAuth2 Difference, JSON and XML APIs parsing, Swagger Config, idempotent and non idempotent methods,
 Filter and Authentication Interceptor, Spring framework and spring boot difference
 Junit and Mockito Annotations, Test Driven (Rest Assured) and Behavorial Driven
 
