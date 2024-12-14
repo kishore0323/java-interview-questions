@@ -1,3 +1,24 @@
+Java
+OOPS, Strings uses and its methods, Immutable Object, Singleton Class, Stack and Heap Memory, Garbage collection, Interfaces, Java 8 features, steams examples, comparator and comparable interface, Serializable, Design Patterns, 
+Collections- Map methods and internal working, changes in java 8, differences, internal data structure and uses of each collection, 
+concurrent modification exception, types of thread safe collections, collection hirachcy,
+Types of exception and errors, differnt ways handling exception and rules 
+Concurrency API- Executors, CountdownLatch, Callable, Completable Future, Inter thread communication, Countdown latch, Cyclic Barrier, Semaphore, thread life cycle, thread and runnable, thread creation using lambda, Deadlock, Race Condition, thread safe variable and collections, Threadpool, Thread Schduler, ExectutorsThreadpool, 
+
+SpringBoot
+Bean Scope, Bean Factory, Rest API best practices, Custom Annotation and its types, Custom Exception Handler, Controller and RestController
+Qualifier, Primary, Asyc, Profile, Value Anntoations, Bean life cycle and its annotation, AOP, Advice, Http Status Codes, ComponentsScan
+Spring Security, multiple database Configuration, How to add libraries if spring version has conflict & doesnot support 
+OAuth and OAuth2 Difference, JSON and XML APIs parsing, Swagger Config, 
+Filter and Authentication Interceptor, Spring framework and spring boot difference
+Junit and Mockito Annotations, Test Driven (Rest Assured) and Behavorial Driven
+
+Spring Data JPA and Hibernate
+Pagination, Hibernate query types- Criteria, Native, HQL, CRUD & JPA Repository
+L1 and L2 Caching, save, update, persist, load, get
+Entity Object Anotations - Primary Key, Foregin Key, Relational Mappings, Embbeded Id
+Transactional annotation and its strategy 
+
 # Spring Quartz vs Spring Batch vs Spring Scheduler
 
 Spring provides several ways to schedule and manage tasks within Java applications, with the most popular solutions being **Spring Quartz**, **Spring Batch**, and the built-in **Spring Scheduler**. Each has specific use cases and benefits. Here's a detailed breakdown of when to use each and how they differ:
