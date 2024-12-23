@@ -13,13 +13,13 @@ Frameworks used in answering the questions:
 📌 P-A-R [Problem, Action, Result]
 📌 C-A-R-L [Challenge, Action, Result, Learning]
 
-**Q10: “What is your greatest weakness?”**
+**Q10: “What is your greatest weakness?”** - https://lnkd.in/dSsZ-45V
 - An area I need to work on is my public speaking skills. In the past, I've felt a bit nervous when presenting in front of larger audiences, and this occasionally affected my ability to communicate my ideas effectively [𝗖𝗵𝗼𝗼𝘀𝗲 𝗮 𝗴𝗲𝗻𝘂𝗶𝗻𝗲 𝘄𝗲𝗮𝗸𝗻𝗲𝘀𝘀]
 - However, I'm actively addressing this weakness by enrolling in a public speaking course and joining a local Toastmasters group. [𝗛𝗼𝘄 𝗬𝗼𝘂'𝗿𝗲 𝗔𝗱𝗱𝗿𝗲𝘀𝘀𝗶𝗻𝗴 𝗜𝘁]
 - I've also sought out opportunities within my current job to lead smaller team meetings and presentations, which has allowed me to practice and build my confidence. [𝗥𝗲𝗹𝗮𝘁𝗲 𝗜𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗝𝗼𝗯]
 - I believe that addressing this weakness is essential for better stakeholder management, and it will help me become a more confident and persuasive communicator. [𝗘𝗻𝗱 𝗼𝗻 𝗮 𝗣𝗼𝘀𝗶𝘁𝗶𝘃𝗲 𝗡𝗼𝘁𝗲]
 
-**Q9: “What are your strengths?”**
+**Q9: “What are your strengths?”** - https://lnkd.in/dRFEE4AQ
 - 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝗺𝗲𝗻𝘁𝗶𝗼𝗻𝗲𝗱 𝗶𝗻 𝘁𝗵𝗲 𝗷𝗼𝗯 𝗱𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻 𝗮𝘀 𝘆𝗼𝘂𝗿 𝘀𝘁𝗿𝗲𝗻𝗴𝘁𝗵;
 My biggest strength is that I’m very efficient at troubleshooting the issues [describe strength]. In my previous job at Oracle, I fixed more than 30+ critical bugs by analysing and debug the issues by gping through server logs, understanding legacy code, business logic and data workflow from different microservies [define how you used that strength]. 
 - 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝘆𝗼𝘂 𝗲𝘅𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘆𝗼𝘂𝗿 𝘄𝗼𝗿𝗸 𝗲𝘅𝗽𝗲𝗿𝗶𝗲𝗻𝗰𝗲;
