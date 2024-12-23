@@ -20,10 +20,11 @@ Frameworks used in answering the questions:
 - I believe that addressing this weakness is essential for better stakeholder management, and it will help me become a more confident and persuasive communicator. [𝗘𝗻𝗱 𝗼𝗻 𝗮 𝗣𝗼𝘀𝗶𝘁𝗶𝘃𝗲 𝗡𝗼𝘁𝗲]
 
 **Q9: “What are your strengths?”**
-𝟭. 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝗺𝗲𝗻𝘁𝗶𝗼𝗻𝗲𝗱 𝗶𝗻 𝘁𝗵𝗲 𝗷𝗼𝗯 𝗱𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻 𝗮𝘀 𝘆𝗼𝘂𝗿 𝘀𝘁𝗿𝗲𝗻𝗴𝘁𝗵; e.g. My biggest strength is that I’m very efficient at troubleshooting the issues [describe strength]. In my previous job at Oracle, I fixed more than 30+ critical bugs by analysing and debug the issues by gping through server logs, understanding legacy code, business logic and data workflow from different microservies [define how you used that strength]. 
-𝟮. 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝘆𝗼𝘂 𝗲𝘅𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘆𝗼𝘂𝗿 𝘄𝗼𝗿𝗸 𝗲𝘅𝗽𝗲𝗿𝗶𝗲𝗻𝗰𝗲;
+- 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝗺𝗲𝗻𝘁𝗶𝗼𝗻𝗲𝗱 𝗶𝗻 𝘁𝗵𝗲 𝗷𝗼𝗯 𝗱𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻 𝗮𝘀 𝘆𝗼𝘂𝗿 𝘀𝘁𝗿𝗲𝗻𝗴𝘁𝗵;
+My biggest strength is that I’m very efficient at troubleshooting the issues [describe strength]. In my previous job at Oracle, I fixed more than 30+ critical bugs by analysing and debug the issues by gping through server logs, understanding legacy code, business logic and data workflow from different microservies [define how you used that strength]. 
+- 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝘆𝗼𝘂 𝗲𝘅𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘆𝗼𝘂𝗿 𝘄𝗼𝗿𝗸 𝗲𝘅𝗽𝗲𝗿𝗶𝗲𝗻𝗰𝗲;
 I’m good at picking up new skills. I’ve worked on a variety of different microservice project - things like working on etl, rest api, analytics, and a lot more as you’ve probably seen on my resume. For most of those jobs, I ended up picking up all the needed skills within 1 or 2 weeks without any previous hands-on experience. 
-𝟯. 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝘆𝗼𝘂 𝗲𝘅𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘆𝗼𝘂𝗿 𝗽𝗲𝗿𝘀𝗼𝗻𝗮𝗹 𝗹𝗶𝗳𝗲; 
+- 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝘆𝗼𝘂 𝗲𝘅𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘆𝗼𝘂𝗿 𝗽𝗲𝗿𝘀𝗼𝗻𝗮𝗹 𝗹𝗶𝗳𝗲; 
 My biggest strength is my adaptability. During my trip to different places, I encountered numerous unexpected situations that required me to think on my feet. From navigating complex transportation systems to communicating effectively in unfamiliar languages, I learned to adapt and thrive in diverse settings. In a professional context, I believe it will be a valuable asset, enabling me to handle changing priorities. 
 
 Q8: “Can you walk me through your resume?” - https://lnkd.in/dNDXQM-c
