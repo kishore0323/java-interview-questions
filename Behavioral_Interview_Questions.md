@@ -13,9 +13,11 @@ Frameworks used in answering the questions:
 📌 P-A-R [Problem, Action, Result]
 📌 C-A-R-L [Challenge, Action, Result, Learning]
 
-Let’s go:
-————————————
-Q10: “What is your greatest weakness?” - https://lnkd.in/dSsZ-45V
+**Q10: “What is your greatest weakness?”**
+- An area I need to work on is my public speaking skills. In the past, I've felt a bit nervous when presenting in front of larger audiences, and this occasionally affected my ability to communicate my ideas effectively [𝗖𝗵𝗼𝗼𝘀𝗲 𝗮 𝗴𝗲𝗻𝘂𝗶𝗻𝗲 𝘄𝗲𝗮𝗸𝗻𝗲𝘀𝘀]
+- However, I'm actively addressing this weakness by enrolling in a public speaking course and joining a local Toastmasters group. [𝗛𝗼𝘄 𝗬𝗼𝘂'𝗿𝗲 𝗔𝗱𝗱𝗿𝗲𝘀𝘀𝗶𝗻𝗴 𝗜𝘁]
+- I've also sought out opportunities within my current job to lead smaller team meetings and presentations, which has allowed me to practice and build my confidence. [𝗥𝗲𝗹𝗮𝘁𝗲 𝗜𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗝𝗼𝗯]
+- I believe that addressing this weakness is essential for better stakeholder management, and it will help me become a more confident and persuasive communicator. [𝗘𝗻𝗱 𝗼𝗻 𝗮 𝗣𝗼𝘀𝗶𝘁𝗶𝘃𝗲 𝗡𝗼𝘁𝗲]
 
 Q9: “What are your strengths?” - https://lnkd.in/dRFEE4AQ
 
