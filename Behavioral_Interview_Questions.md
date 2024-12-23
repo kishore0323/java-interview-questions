@@ -27,7 +27,18 @@ I’m good at picking up new skills. I’ve worked on a variety of different mic
 - 𝗦𝗵𝗼𝘄𝗰𝗮𝘀𝗲 𝗮 𝘀𝗸𝗶𝗹𝗹 𝘆𝗼𝘂 𝗲𝘅𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘆𝗼𝘂𝗿 𝗽𝗲𝗿𝘀𝗼𝗻𝗮𝗹 𝗹𝗶𝗳𝗲; 
 My biggest strength is my adaptability. During my trip to different places, I encountered numerous unexpected situations that required me to think on my feet. From navigating complex transportation systems to communicating effectively in unfamiliar languages, I learned to adapt and thrive in diverse settings. In a professional context, I believe it will be a valuable asset, enabling me to handle changing priorities. 
 
-Q8: “Can you walk me through your resume?” - https://lnkd.in/dNDXQM-c
+**Q8: “Can you walk me through your resume?”** - https://lnkd.in/dNDXQM-c
+
+➡️ Intro: Your name, who you are, where do you belong to?
+➡️ Initial Spark: Validate that you are interested in this role. [ Past experience, an internship, certification, a blog or anything else]
+➡️ Alignment: 2 or 3 relevant resume pointers that map best to job description. 
+➡️ Conclude: Close the conversation with showing alignment.
+
+- "Thanks for having me here. My name is Kishore, and I born and bought up in Benglauru. [Intro]
+- I am a senior software developer having 8+ years of experience, and my expertise lies in java, spring, hibernate, microservices, angular and cloud, rest api development from designing complex requirements, developing and deployment and aligning stakeholders to ship the product as quickly as possible. [Initial Spark]
+- Currently, I am working as a senior member of technical staff  in the internaltional product solutions team at Oracle, where my job is to provide translation processing across multiple products, analysis, jobs management, rest api development, product analytics.
+- I noticed that your company is seeking someone with past experience in designing and developing restful apis, kafka, sql and nosql, microservices, angular and a deep understanding of cloud, product and team management within large organizations. [Alignment]
+That's the reason I'm here today. Is there anything specific you would like me to explain in more detail?"
 
 Q7: “Can you talk about a time when you had to handle multiple competing priorities and tasks?” - https://lnkd.in/dD_-EHA8
 
