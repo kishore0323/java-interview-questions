@@ -1,7 +1,43 @@
-
 This repository contains tips and resources to prepare for Behavioral interviews.
 
+## ✅ Top 10 Behavioral Interview Questions
+
+Top 10 Interview Questions and how to answer them during an interview:
+
+[Exact templates and sample answers inside]
+
+Frameworks used in answering the questions:
+📌 S-T-A-R [Situation - Task at hand - Achievement - Result]
+📌 C-A-R [Context, Action, Result]
+📌 P-S-B [Problem-Solution-Benefit
+📌 P-A-R [Problem, Action, Result]
+📌 C-A-R-L [Challenge, Action, Result, Learning]
+
+Let’s go:
+————————————
+Q10: “What is your greatest weakness?” - https://lnkd.in/dSsZ-45V
+
+Q9: “What are your strengths?” - https://lnkd.in/dRFEE4AQ
+
+Q8: “Can you walk me through your resume?” - https://lnkd.in/dNDXQM-c
+
+Q7: “Can you talk about a time when you had to handle multiple competing priorities and tasks?” - https://lnkd.in/dD_-EHA8
+
+Q6: “Tell me about a time when you had to deal with a difficult coworker” - https://lnkd.in/dS6EVNSN
+
+Q5: “What’s your favorite project you’ve worked on?” - https://lnkd.in/dBTqaety
+
+Q4: “Tell me about a time you made a mistake at work” - https://lnkd.in/dAzCbfRv
+
+Q3: “What is your greatest professional achievement?” - https://lnkd.in/d4bmzcvk
+
+Q2: “Why should we hire you?” - https://lnkd.in/dvPSmvRp
+
+Q1: “Tell me about yourself” - https://lnkd.in/d7ANtjGE
+————————————
+
 ## ✅ General Tips to succeed in Behavioral Interviews
+
 1. **Understand the STAR Method:** Familiarize yourself with the STAR method (Situation, Task, Action, Result) for structuring your responses. This helps you provide clear and concise answers and keeps your answers focused.
 1. **Listen attentively:** Pay close attention to the interviewer's questions and follow-up prompts. Make sure your responses directly address what's being asked.
 1. **Be concise:** Keep your answers short and to the point. Don't go off-topic.
@@ -10,27 +46,29 @@ This repository contains tips and resources to prepare for Behavioral interviews
 1. **Stay professional and constructive:** You don't want to be disrespectful, offensive, arrogant, mean, confrontational.
 1. **Highlight your strengths:** Frame your responses in a positive light. Even when discussing challenges or failures, focus on what you learned and how you improved.
 1. **Ask thoughtful questions:** Interviewing is a two-way street. Ask questions to learn more about the company, culture, etc..
-1. **It's ok to not have answer to every question:** If you are asked a question which you can't recall from past experience you can tell the interviewer *"I think I don't actually have this experience but I would love to tell you how I would react in this situation"*
+1. **It's ok to not have answer to every question:** If you are asked a question which you can't recall from past experience you can tell the interviewer _"I think I don't actually have this experience but I would love to tell you how I would react in this situation"_
 1. **Highlight you are a Team Player:** Strike a balance between highlighting your qualities and your ability to work in a team and help others. Talk about stories that reflect qualities and team work (both your qualities and team work).
 1. **Be Honest:** If you don't know the answer to a question, it's better to admit it than to make something up.
 1. **Prepare ahead of time:** Preparing before the interview will help you remember things more easily and frame answers better.
 1. **Practice common questions:** Best way to prepare is to go through common interview questions and think about how you would answer them.
 
 ## 🌟 STAR Framework
-The STAR framework is a structured method for answering behavioral interview questions effectively. 
+
+The STAR framework is a structured method for answering behavioral interview questions effectively.
 
 STAR stands for Situation, Task, Action, and Result.
 
 - **Situation (S):** Begin by describing the specific situation or context you were in. Set the stage for your story. Provide enough background information to help the interviewer understand the scenario.
   - Example: "In my previous role as a software engineer at XYZ Company, we were working on a project to improve the performance of our e-commerce platform."
--  **Task (T):** Next, explain the task or challenge you were faced with. What were the goals or objectives you needed to achieve in that situation?
-   - Example: "The task was to reduce page load times and increase the overall responsiveness of our website to enhance the user experience."
+- **Task (T):** Next, explain the task or challenge you were faced with. What were the goals or objectives you needed to achieve in that situation?
+  - Example: "The task was to reduce page load times and increase the overall responsiveness of our website to enhance the user experience."
 - **Action (A):** Describe the actions you took to address the task or challenge. This is the most critical part of your response. Be specific about the steps you took, your responsibilities, and your thought process. Focus on your actions, not the team's actions.
   - Example: "To address this challenge, I first conducted a performance analysis to identify bottlenecks in the code. Then, I collaborated with the front-end and back-end teams to implement code optimizations, including browser caching, image compression, and code minification. I also introduced lazy loading for non-essential content."
 - **Result (R):** Finally, share the results or outcomes of your actions. Be quantitative whenever possible. Describe the impact of your actions on the situation or task.
   - Example: "As a result of our optimizations, we achieved a 30% reduction in page load times and a 20% improvement in overall website performance. This led to a 15% increase in user engagement, as measured by longer session durations and higher conversion rates."
 
 Here are a few more common behavioral interview questions along with STAR-based responses:
+
 1. Tell me about a time when you had to solve a complex technical problem.
    - **Situation:** "While working as a software engineer at Company X..."
    - **Task:** "I was tasked with resolving a critical performance issue..."
@@ -48,17 +86,20 @@ Here are a few more common behavioral interview questions along with STAR-based 
    - **Result:** "We successfully implemented the design changes without delaying the project, and the app received positive reviews from users."
 
 ## 🚀 Questions
+
 **Disclaimer:** Please note that the provided sample responses to these questions are intended to serve as inspiration. During the actual interview, you should provide your own examples based on your past experiences.
+
 <details>
 <summary><b>Tell me about yourself.</b></summary>
 I am a senior software developer with over 8 years of experience into product development. My journey in software development began with a bachelor's degree in Computer Science, which laid a solid foundation in programming and problem-solving skills.
   
-Throughout my career, I have worked with various technologies and programming languages, including, Java, Spring, Hibernate, Microservices, Cloud, Angular, Javascript. I have a strong background in developing large scale enterprise web applications, and I am particularly passionate about creating user-friendly, efficient, and scalable solutions. 
+Throughout my career, I have worked with various technologies and programming languages, including, Java, Spring, Hibernate, Microservices, Cloud, Angular, Javascript. I have a strong background in developing large scale enterprise web applications, and I am particularly passionate about creating user-friendly, efficient, and scalable solutions.
 
 Currently, I am working with Oracle as Senior Member of Technical Staff, where I am part of a IPS team, I am working on cloud sass based project called GAT. This project improved my technical skills and also abilities in teamwork and communication. I train and support new team members/juniors whenever they joined the organization. Experenice working in agile enironment scrum and kanban framework.
 
-I like to stay updated with the latest technological trends. I also have a keen interest in AI and machine learning. 
+I like to stay updated with the latest technological trends. I also have a keen interest in AI and machine learning.
 I am excited about the opportunity to bring my diverse skill set, passion for technology, and collaborative spirit to your team and company.
+
 </details>
 <details>
 <summary><b>Tell me about a time you had a disagreement with your manager.</b></summary>
@@ -902,6 +943,7 @@ I am excited about the opportunity to bring my diverse skill set, passion for te
 </details>
 
 ## ？Questions you can ask the interviewer
+
 - What brought you to this company? What has been most challenging for you?
 - Can you share some insight about the day-to-day responsibilities of this position? What’s a typical day like?
 - Can you tell me about the opportunities for career advancement at [company name]?
@@ -918,4 +960,3 @@ I am excited about the opportunity to bring my diverse skill set, passion for te
 - Can you describe the [company name]'s overall management style and the type of person who usually does well here?
 - What excites you the most about the [company name]'s future?
 - I’m very interested in scalability, and I’d love to learn more about it. What opportunities are there at this company to learn more about this?
-
