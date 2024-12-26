@@ -46,7 +46,11 @@ For instance, just last month, we were in the midst of executing a high-priority
 - To address this challenge, first, I initiated a call with the development team to assess the effort required for each task. Realizing that simultaneous execution wasn't feasible, I proactively communicated the situation to management. I emphasized the urgency of the new task and its potential impact on the ongoing project. [Action]
 - Following this, we collectively decided to shift priorities, ensuring timely compliance with the new requirement. This not only prevented a major non-compliance issue but also demonstrated our agility and effective upward management of Senior Management's expectations.[Result] ”
 
-Q6: “Tell me about a time when you had to deal with a difficult coworker” - https://lnkd.in/dS6EVNSN
+**Q6: “Tell me about a time when you had to deal with a difficult coworker”** - https://lnkd.in/dS6EVNSN
+-"During my previous role, I faced a situation with a coworker who regularly disrupted meetings with irrelevant anecdotes, even after our attempts to object. [Situation]
+-I took the initiative to address this issue directly. Firstly, I had a one-on-one conversation with him to explain the negative impact on our productivity. Additionally, we introduced a practice of setting clear meeting agendas to maintain focus. [Task]
+- Eventually, he understood the concern and began saving these anecdotes for informal coffee breaks. [Achievement]
+- This experience taught me a lot about the addressing conflict in the workplace. [Result/Learning]”
 
 Q5: “What’s your favorite project you’ve worked on?” - https://lnkd.in/dBTqaety
 
