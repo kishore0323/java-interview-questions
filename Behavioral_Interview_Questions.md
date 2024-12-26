@@ -40,7 +40,11 @@ My biggest strength is my adaptability. During my trip to different places, I en
 - I noticed that your company is seeking someone with past experience in designing and developing restful apis, kafka, sql and nosql, microservices, angular and a deep understanding of cloud, product and team management within large organizations. [Alignment]
 That's the reason I'm here today. Is there anything specific you would like me to explain in more detail?"
 
-Q7: “Can you talk about a time when you had to handle multiple competing priorities and tasks?” - https://lnkd.in/dD_-EHA8
+**Q7: “Can you talk about a time when you had to handle multiple competing priorities and tasks?”** - https://lnkd.in/dD_-EHA8
+- "In my current role as a Senior Memeber of Technical Staff at Oracle, I frequently encounter situations where multiple critical tasks compete for attention.
+For instance, just last month, we were in the midst of executing a high-priority feature, as mandated by our Senior Management , when a new requirement on product analytics with a tight 1-week deadline emerged. [Context]
+- To address this challenge, first, I initiated a call with the development team to assess the effort required for each task. Realizing that simultaneous execution wasn't feasible, I proactively communicated the situation to management. I emphasized the urgency of the new task and its potential impact on the ongoing project. [Action]
+- Following this, we collectively decided to shift priorities, ensuring timely compliance with the new requirement. This not only prevented a major non-compliance issue but also demonstrated our agility and effective upward management of Senior Management's expectations.[Result] ”
 
 Q6: “Tell me about a time when you had to deal with a difficult coworker” - https://lnkd.in/dS6EVNSN
 
