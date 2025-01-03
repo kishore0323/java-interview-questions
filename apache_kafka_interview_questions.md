@@ -1,6 +1,6 @@
-Youtube Tutorial - https://www.youtube.com/watch?v=inrQUHLPFd4&list=WL&index=1&t=234s
-Apache Kafka Offical Documentation - https://www.apache.org/dyn/closer.cgi?path=/kafka/3.9.0/kafka_2.13-3.9.0.tgz
-Spring Kafka Documentation - https://docs.spring.io/spring-kafka/reference/quick-tour.html
+Youtube Tutorial - https://www.youtube.com/watch?v=inrQUHLPFd4&list=WL&index=1&t=234s <br/>
+Apache Kafka Offical Documentation - https://www.apache.org/dyn/closer.cgi?path=/kafka/3.9.0/kafka_2.13-3.9.0.tgz <br/>
+Spring Kafka Documentation - https://docs.spring.io/spring-kafka/reference/quick-tour.html <br/>
 
 ### (Q.1) What is Apache Kafka?
 Apache Kafka is a publish-subscribe **open source** message broker application. This messaging application was coded in “Scala”. Basically, this project was started by the Apache software. Kafka’s design pattern is mainly based on the transactional logs design.
