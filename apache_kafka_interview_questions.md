@@ -7,7 +7,8 @@ Spring Kafka Documentation - https://docs.spring.io/spring-kafka/reference/quick
 Wikimedia Stream API Swagger UI: https://stream.wikimedia.org/?doc#/streams <br/>
 Wikimedia Stream API Ex: https://stream.wikimedia.org/v2/stream/recentchange <br/>
 Kafka Pub-Sub Dynamic Schema Solution using Avro and Schema Registry - https://www.youtube.com/watch?v=u0kRK-qbopk&list=PLVz2XdJiJQxwpWGoNokohsSW2CysI6lDc&index=12 <br/>
-When to use Kafka over RabbitMQ - https://stackoverflow.com/questions/42151544/when-to-use-rabbitmq-over-kafka
+When to use Kafka over RabbitMQ - https://stackoverflow.com/questions/42151544/when-to-use-rabbitmq-over-kafka <br/>
+Kafka Answers ChatGPT - https://chatgpt.com/share/677bf9a6-a5b0-8009-96a7-16aaf9d68ac5 <br/>
 
 Kafka Youtube Tutorial - https://www.youtube.com/watch?v=inrQUHLPFd4&list=WL&index=1&t=234s <br/>
 Confluent Kafka Tutorial - https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/ <br/>
