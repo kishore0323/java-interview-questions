@@ -1,6 +1,7 @@
 Kafka Youtube Tutorial - https://www.youtube.com/watch?v=inrQUHLPFd4&list=WL&index=1&t=234s <br/>
 Event Driven Async Communication in Microservices- https://www.youtube.com/watch?v=YbSC1OsLp20  <br/>
 Kafka Partition - https://www.youtube.com/watch?v=a9_ovvL-mCE <br/>
+Consumer Group - https://www.youtube.com/watch?v=d0T9g0_G_3U <br/>
 Kafka Offset UI tool - https://www.kafkatool.com/ <br/>
 Apache Kafka Offical Documentation - https://www.apache.org/dyn/closer.cgi?path=/kafka/3.9.0/kafka_2.13-3.9.0.tgz <br/>
 Spring Kafka Documentation - https://docs.spring.io/spring-kafka/reference/quick-tour.html <br/>
