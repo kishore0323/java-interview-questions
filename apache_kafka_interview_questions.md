@@ -1,4 +1,3 @@
-Kafka Youtube Tutorial - https://www.youtube.com/watch?v=inrQUHLPFd4&list=WL&index=1&t=234s <br/>
 Event Driven Async Communication in Microservices- https://www.youtube.com/watch?v=YbSC1OsLp20  <br/>
 Kafka Partition - https://www.youtube.com/watch?v=a9_ovvL-mCE <br/>
 Consumer Group - https://www.youtube.com/watch?v=d0T9g0_G_3U <br/>
@@ -8,8 +7,11 @@ Spring Kafka Documentation - https://docs.spring.io/spring-kafka/reference/quick
 Wikimedia Stream API Swagger UI: https://stream.wikimedia.org/?doc#/streams <br/>
 Wikimedia Stream API Ex: https://stream.wikimedia.org/v2/stream/recentchange <br/>
 Kafka Pub-Sub Dynamic Schema Solution using Avro and Schema Registry - https://www.youtube.com/watch?v=u0kRK-qbopk&list=PLVz2XdJiJQxwpWGoNokohsSW2CysI6lDc&index=12 <br/>
-Java Techie Kafka Tutorial - https://www.youtube.com/watch?v=xGwzuz8F9k0&list=PLVz2XdJiJQxwpWGoNokohsSW2CysI6lDc <br/>
 When to use Kafka over RabbitMQ - https://stackoverflow.com/questions/42151544/when-to-use-rabbitmq-over-kafka
+
+Kafka Youtube Tutorial - https://www.youtube.com/watch?v=inrQUHLPFd4&list=WL&index=1&t=234s <br/>
+Confluent Kafka Tutorial - https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/ <br/>
+Java Techie Kafka Tutorial - https://www.youtube.com/watch?v=xGwzuz8F9k0&list=PLVz2XdJiJQxwpWGoNokohsSW2CysI6lDc <br/>
 
 ### (Q.1) What is Apache Kafka?
 Apache Kafka is a publish-subscribe **open source** message broker application. This messaging application was coded in “Scala”. Basically, this project was started by the Apache software. Kafka’s design pattern is mainly based on the transactional logs design.
