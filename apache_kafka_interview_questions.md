@@ -7,8 +7,9 @@ Apache Kafka Offical Documentation - https://www.apache.org/dyn/closer.cgi?path=
 Spring Kafka Documentation - https://docs.spring.io/spring-kafka/reference/quick-tour.html <br/>
 Wikimedia Stream API Swagger UI: https://stream.wikimedia.org/?doc#/streams <br/>
 Wikimedia Stream API Ex: https://stream.wikimedia.org/v2/stream/recentchange <br/>
+Kafka Pub-Sub Dynamic Schema Solution using Avro and Schema Registry - https://www.youtube.com/watch?v=u0kRK-qbopk&list=PLVz2XdJiJQxwpWGoNokohsSW2CysI6lDc&index=12 <br/>
 
-Kafka Tutorial - https://www.youtube.com/watch?v=xGwzuz8F9k0&list=PLVz2XdJiJQxwpWGoNokohsSW2CysI6lDc <br/>
+Java Techie Kafka Tutorial - https://www.youtube.com/watch?v=xGwzuz8F9k0&list=PLVz2XdJiJQxwpWGoNokohsSW2CysI6lDc <br/>
 
 ### (Q.1) What is Apache Kafka?
 Apache Kafka is a publish-subscribe **open source** message broker application. This messaging application was coded in “Scala”. Basically, this project was started by the Apache software. Kafka’s design pattern is mainly based on the transactional logs design.
