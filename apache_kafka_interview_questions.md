@@ -1,4 +1,5 @@
 Youtube Tutorial - https://www.youtube.com/watch?v=inrQUHLPFd4&list=WL&index=1&t=234s <br/>
+- https://www.youtube.com/watch?v=YbSC1OsLp20  <br/>
 Apache Kafka Offical Documentation - https://www.apache.org/dyn/closer.cgi?path=/kafka/3.9.0/kafka_2.13-3.9.0.tgz <br/>
 Spring Kafka Documentation - https://docs.spring.io/spring-kafka/reference/quick-tour.html <br/>
 Wikimedia Stream API Swagger UI: https://stream.wikimedia.org/?doc#/streams <br/>
