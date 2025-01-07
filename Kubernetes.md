@@ -1,4 +1,7 @@
-# 42 Important Kubernetes Interview Questions
+Kubernetes Tutorial - https://www.youtube.com/watch?v=X48VuDVv0do&t=26s <br/>
+Minkube - https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/
+Kubectl - https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fhomebrew
+## 42 Important Kubernetes Interview Questions
 
 <br>
 
