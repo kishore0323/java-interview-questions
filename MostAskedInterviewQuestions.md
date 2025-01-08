@@ -18,6 +18,59 @@ L1 and L2 Caching, save, update, persist, load, get
 Entity Object Anotations - Primary Key, Foregin Key, Relational Mappings, Embbeded Id
 Transactional annotation and its strategy 
 
+
+Elasticsearch vs MongoDB: What are the Differences?
+---------------------------------------------------
+
+### 1\. Data Storage Architecture
+
+Elasticsearch is written in Java and based on the open-source Lucene search engine. It writes data to inverted indexes using Lucene segments. Settings, index mapping, alternative cluster states, and other metadata are saved to Elasticsearch files outside the Lucene environment.
+
+In Lucene, data updates are resource-intensive operations, because segments are immutable, and every commit creates a new segment, then segments are merged automatically. To avoid this excessive I/O, Elasticsearch creates dedicated transactional index logs, preventing low-level Lucene commits for each indexing procedure. These logs can also be used for recovery in case of data corruption.
+
+*Related content: read our guide to *[Elasticsearch architecture](https://bluexp.netapp.com/blog/cvo-blg-elasticsearch-architecture-7-key-components)
+
+MongoDB is better suited for high write and update throughput operations without draining CPU resources and/or causing disk I/O issues. It is written in C++ and uses a memory map file to map on-disk data files to in-memory byte arrays. It organizes data using a doubly linked data structure: documents contain linked lists to one another and to the BSON-encoded data behind the scenes.
+
+In case of low system memory or high system resource utilization, a MongoDB process shuts itself down. For database recovery in the event of a hard system shutdown, Mongo generates journal logs.
+
+### 2\. Licensing Model and Paid Features
+
+Elasticsearch is an open-source product licensed with Apache 2.0. It has everything you need to build a search application with a basic level of security. For advanced security features like audit logging, IP filtering and the Elasticsearch Token Service, as well as other features like machine learning analysis and alerting, you will need to purchase the Gold, Platinum or Enterprise edition.
+
+MongoDB has a community edition offered under the Server-Side Public License (SSPL) v1.0. This includes all the core features of MongoDB, as well as basic monitoring equipment and security. The Enterprise Server edition provides advanced security like LDAP, auditing, and Kerberos access controls, storage encryption at rest, and high-performance in-memory storage.
+
+### 3\. Backup and Recovery
+
+Elasticsearch provides a snapshot REST API and offers a variety of plugins that let you store backups in a "snapshot repository", which can be hosted on local hardware, on cloud object storage services like Amazon S3, or on Hadoop Distributed File System (HDFS). All snapshots are incremental---each backup copies data that was not backed up in earlier snapshots.
+
+MongoDB offers several ways to perform backups:
+
+-   For small deployments you can use the mongodump tool. However, backups can take time and the backup processes affect performance of the database.
+-   A more robust option is taking a point-in-time snapshot of the underlying file system---this needs to be done with operating system tools, not via MongoDB.
+-   MongoDB Atlas and MongoDB Cloud Manager/Ops Manager are commercial cloud services that provide fully managed backups for MongoDB.
+
+### 4\. Programming Language Support
+
+Elasticsearch is written in Java, and supports Java, Ruby, Javascript, GO, .NET, Python, PHP, Rust and Perl.
+
+MongoDB is written in C++, and natively supports C, C++, Scala and Swift. You can use other languages with MongoDB, via open-source clients written by the MongoDB community.
+
+### 5\. Handling Relational Data
+
+Both Elasticsearch and MongoDB support document-based data models but can also support traditional relational data represented by rows and columns.
+
+Elasticsearch has two ways of dealing with relational data: a nested document model and a parent-child document model. Nested can be used for one-to-many relationship between documents and relational data, while parent-child can be used for many-to-many relationships.
+
+MongoDB uses the embedded document model, in which relational data can be added as sub-documents (one to many relationship). Alternatively, it provides a reference model, in which documents can include a reference to relational data (many to many relationship).
+
+### 6\. Use Cases
+
+Elasticsearch was originally designed to support full text search, and provides advanced features to support search, such as tokenizers, token filters and analyzers. It is also commonly used for log analysis, forming part of the popular Elasticsearch, Logstash and Kibana (ELK) stack.
+
+MongoDB is more suitable to manage NoSQL data requiring create, read, update and delete (CRUD) operations. It offers high scalability, reliability, and performance. MongoDB also uses text-based indexes for full-text queries, but the search is slow, and the search server does not provide tokenizers and analyzers like Elasticsearch does.
+
+
 Microservices
 Monolithic and Microservices Differences, Bounded Context, 12 factors, design principles, disadvantages, sharing data base with MS, Why Stateless, Asysnchronous Communciation in MS, Inter MS communication, Saga Pattern, Circuit Design Pattern, API Gateway, Master Slave DP for database in MS, CQRS DP, Distributed tracing, Design patterns used in MS, Design a systems to serve 1 Million Request per second, Types of Saga patterns. Fault tolerance in MS, No of ways to protect REST APIs, Load Balancer, How to Maintain Transaction across MS. Kafka, RabbitmQ, Redis, Elastic Saearch Usage, Concepts and working.
 
