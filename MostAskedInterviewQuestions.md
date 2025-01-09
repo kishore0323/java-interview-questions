@@ -18,6 +18,10 @@ L1 and L2 Caching, save, update, persist, load, get
 Entity Object Anotations - Primary Key, Foregin Key, Relational Mappings, Embbeded Id
 Transactional annotation and its strategy 
 
+Difference between JPA Respository, PagingAndSorting and Crud Repository 
+https://www.geeksforgeeks.org/spring-boot-difference-between-crudrepository-and-jparepository/
+Custome Annotation in Spring Boot
+https://www.baeldung.com/java-custom-annotation
 
 Elasticsearch vs MongoDB: What are the Differences?
 ---------------------------------------------------
