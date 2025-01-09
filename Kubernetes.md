@@ -1,6 +1,6 @@
 Kubernetes Full Course - https://www.youtube.com/watch?v=X48VuDVv0do&t=26s <br/>
 Kubernetes Crash Course - https://www.youtube.com/watch?v=s_o8dwzRlu4 </br>
-Docker Crash Course - https://www.youtube.com/watch?v=pg19Z8LL06w
+Docker Crash Course - https://www.youtube.com/watch?v=pg19Z8LL06w <br/>
 Minkube - https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/ <br/>
 Kubectl - https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fhomebrew <br/>
 
