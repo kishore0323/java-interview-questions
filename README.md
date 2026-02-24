@@ -1,6 +1,3 @@
-## Java, Spring, Angular, Javascript, SQL, Microservices, Hibernate Interview Questions
-
-
 ### Table of Contents
 
 * *[Java 8 Interview Questions](java8-questions.md)*
@@ -27,7 +24,6 @@
 * *[Apache Kafka](apache_kafka_interview_questions.md)*
 * *[AWS Interview Questions](AWS.md)*
   
-<br/>
 - [Q. ***What are the types of Exceptions? Explain the hierarchy of Java Exception classes?***](#q-what-are-the-types-of-exceptions-explain-the-hierarchy-of-java-exception-classes)
 - [Q. ***What is the difference between aggregation and composition?***](#q-what-is-the-difference-between-aggregation-and-composition)
 - [Q. ***What is difference between Heap and Stack Memory in java?***](#q-what-is-difference-between-heap-and-stack-memory-in-java)
@@ -116,16 +112,17 @@
 - [Q. ***Scenario of browser’s browsing history, where you need to store the browsing history, what data structure will you use.?***](#q-scenario-of-browsers-browsing-history-where-you-need-to-store-the-browsing-history-what-data-structure-will-you-use)
 - [Q. ***Scenario where in we have to download a big file by clicking on a link, how will you make sure that connections is reliable throughout?***](#q-scenario-where-in-we-have-to-download-a-big-file-by-clicking-on-a-link-how-will-you-make-sure-that-connections-is-reliable-throughout)
 - [Q. ***What are methods of Object Class?***](#q-what-are-methods-of-object-class)
-- [Q. ***What is copyonwritearraylist in java?***](#q-what-is-copyonwritearraylist-in-java)
-- [Q. ***How do you test static method?***](#q-how-do-you-test-static-method)
-- [Q. ***How to do you test a method for an exception using JUnit?***](#q-how-to-do-you-test-a-method-for-an-exception-using-junit)
-- [Q. ***Which unit testing libraries you have used for testing Java programs?***](#q-which-unit-testing-libraries-you-have-used-for-testing-java-programs)
-- [Q. ***What is the difference between @Before and @BeforeClass annotation?***](#q-what-is-the-difference-between-before-and-beforeclass-annotation)
-- [Q. ***Can you explain Liskov Substitution principle?***](#q-can-you-explain-liskov-substitution-principle)
-- [Q. ***Give me an example of design pattern which is based upon open closed principle?***](#q-give-me-an-example-of-design-pattern-which-is-based-upon-open-closed-principle)
-- [Q. ***What is Law of Demeter violation? Why it matters?***](#q-what-is-law-of-demeter-violation-why-it-matters)
-- [Q. ***What is differences between External Iteration and Internal Iteration?***](#q-what-is-differences-between-external-iteration-and-internal-iteration)
+    - [Q. ***What is copyonwritearraylist in java?***](#q-what-is-copyonwritearraylist-in-java)
+    - [Q. ***How do you test static method?***](#q-how-do-you-test-static-method)
+    - [Q. ***How to do you test a method for an exception using JUnit?***](#q-how-to-do-you-test-a-method-for-an-exception-using-junit)
+    - [Q. ***Which unit testing libraries you have used for testing Java programs?***](#q-which-unit-testing-libraries-you-have-used-for-testing-java-programs)
+    - [Q. ***What is the difference between @Before and @BeforeClass annotation?***](#q-what-is-the-difference-between-before-and-beforeclass-annotation)
+    - [Q. ***Can you explain Liskov Substitution principle?***](#q-can-you-explain-liskov-substitution-principle)
+    - [Q. ***Give me an example of design pattern which is based upon open closed principle?***](#q-give-me-an-example-of-design-pattern-which-is-based-upon-open-closed-principle)
+    - [Q. ***What is Law of Demeter violation? Why it matters?***](#q-what-is-law-of-demeter-violation-why-it-matters)
+    - [Q. ***What is differences between External Iteration and Internal Iteration?***](#q-what-is-differences-between-external-iteration-and-internal-iteration)
 
+<br/>
 
 ## Q. ***What are the types of Exceptions? Explain the hierarchy of Java Exception classes?***
 Exception is an error event that can happen during the execution of a program and disrupts its normal flow.
