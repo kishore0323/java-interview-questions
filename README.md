@@ -3207,5 +3207,355 @@ Applets and WebStart are deprecated.
 Use external libraries if needed (e.g., Jakarta EE for JAXB).
 
 
-![IMG_7978](https://github.com/user-attachments/assets/9c9d7504-f29b-4d0d-9344-299feb919d9d)
+## JAVA 17 Features
 
+### Language Features
+☕ Sealed Classes (Finalized) — Restrict class inheritance.
+Sealed classes in Java 17 allow developers to control which classes can extend a given class
+
+```
+// Sealed class allowing only specific subclasses
+public sealed class Vehicle permits Car, Bike {
+    public void start() {
+        System.out.println("Vehicle is starting...");
+    }
+}
+
+// Permitted subclass
+final class Car extends Vehicle {
+    public void drive() {
+        System.out.println("Car is driving...");
+    }
+}
+
+// Permitted subclass
+final class Bike extends Vehicle {
+    public void ride() {
+        System.out.println("Bike is riding...");
+    }
+}
+
+// ❌ The following will cause a compilation error
+// class Truck extends Vehicle {} // Not permitted!
+
+public class Main {
+    public static void main(String[] args) {
+        Vehicle car = new Car();
+        car.start(); // ✅ Allowed
+        ((Car) car).drive(); // ✅ Allowed
+
+        Vehicle bike = new Bike();
+        bike.start(); // ✅ Allowed
+        ((Bike) bike).ride(); // ✅ Allowed
+    }
+}
+```
+
+Key Takeaways:
+sealed keyword restricts inheritance to only Car and Bike.permits specifies which classes can extend Vehicle.
+Any other subclass not listed in permits (e.g., Truck) will cause a compilation error.
+
+```
+// Sealed class allowing only specific subclasses
+public sealed class Vehicle permits Car, Bike {}
+
+// `final` class - cannot be extended further
+public final class Car extends Vehicle {}
+
+// `non-sealed` class - can be extended further
+public non-sealed class Bike extends Vehicle {}
+
+// ✅ Allowed: ElectricBike can extend Bike (since Bike is non-sealed)
+public class ElectricBike extends Bike {}
+
+public class Main {
+    public static void main(String[] args) {
+        Vehicle v1 = new Car(); // ✅ Allowed
+        Vehicle v2 = new Bike(); // ✅ Allowed
+        Vehicle v3 = new ElectricBike(); // ✅ Allowed (due to non-sealed)
+    }
+}
+```
+
+Key Takeaways:
+final subclasses (like Car) cannot be extended further.non-sealed subclasses (like Bike) can be extended by other classes.
+ElectricBike can extend Bike because Bike is non-sealed, but Car cannot be extended further.
+
+Pattern Matching for switch (Preview) – Cleaner and more expressive switch
+Prior to Java 17, switch worked only with primitive types, String, and enums. If we needed to handle different object types, we had to rely on if-else with instanceof and explicit type casting.
+
+Example (Before Java 17)
+```
+public class OldSwitchExample {
+    static void process(Object obj) {
+        if (obj instanceof Integer) {
+            Integer i = (Integer) obj; // Explicit casting needed
+            System.out.println("Integer: " + (i * 2));
+        } else if (obj instanceof String) {
+            String s = (String) obj;
+            System.out.println("String: " + s.toUpperCase());
+        } else if (obj instanceof Double) {
+            Double d = (Double) obj;
+            System.out.println("Double: " + (d + 10.5));
+        } else {
+            System.out.println("Unknown type!");
+        }
+    }
+
+    public static void main(String[] args) {
+        process(10);         // Integer: 20
+        process("hello");    // String: HELLO
+        process(5.5);        // Double: 16.0
+    }
+}
+```
+
+Problems in the Old Approach -Redundant instanceof checks and explicit casting, Verbose and repetitive code.
+
+Java 17 introduces Pattern Matching for switch, which:
+✔ Eliminates explicit type casting.
+✔ Allows switch to work with objects beyond primitives and enums.
+
+```
+public class NewSwitchExample {
+    static void process(Object obj) {
+        switch (obj) {
+            case Integer i -> System.out.println("Integer: " + (i * 2));
+            case String s -> System.out.println("String: " + s.toUpperCase());
+            case Double d -> System.out.println("Double: " + (d + 10.5));
+            case null -> System.out.println("Null value provided!");
+            default -> System.out.println("Unknown type!");
+        }
+    }
+
+    public static void main(String[] args) {
+        process(10);         // Integer: 20
+        process("hello");    // String: HELLO
+        process(5.5);        // Double: 16.0
+        process(null);       // Null value provided!
+    }
+}
+```
+
+☕ Records (Finalized from Java 16) – Concise data classes.
+
+Before records, we had to manually write constructors, getters, toString(), equals(), and hashCode(), making the code verbose.
+
+- Too much boilerplate code for a simple data class.
+- Manually maintaining equals(), hashCode(), toString() is error-prone.
+- Lack of immutability enforcement by default.
+
+Records are immutable data classes, They simplify the creation of data-carrying classes by automatically providing:
+✔ Immutable fields (no setters).
+✔ Generated constructor, equals(), hashCode(), and toString().
+
+``` public record Employee(String name, int age) {} ```
+
+You can still add custom methods in records if needed.
+
+```
+public record Employee(String name, int age) {
+    public String greet() {
+        return "Hello, my name is " + name + " and I am " + age + " years old.";
+    }
+}
+```
+```
+public class Main {
+    public static void main(String[] args) {
+        Employee emp = new Employee("Alice", 30);
+        System.out.println(emp.greet()); 
+        // Output: Hello, my name is Alice and I am 30 years old.
+    }
+}
+```
+
+By default, Records provide an implicit constructor, but we can also define a compact constructor.
+```
+public record Employee(String name, int age) {
+    public Employee {
+        if (age < 18) {
+            throw new IllegalArgumentException("Age must be 18 or above");
+        }
+    }
+}
+```
+```
+public class Main {
+    public static void main(String[] args) {
+        Employee emp = new Employee("Alice", 30);  // ✅ Works fine
+        Employee emp2 = new Employee("Bob", 16);   // ❌ Throws IllegalArgumentException
+    }
+}
+```
+
+✔ No need to manually assign this.name = name;—Java does it automatically.
+✔ We can perform validation inside the compact constructor.
+✔ Works seamlessly with modern Java features like sealed classes.
+
+☕ Text Blocks – Multi-line string literals (""")
+Before Text Blocks, defining multi-line strings required manual concatenation (+), escape sequences (\n), and indentation issues.
+
+```
+String json = "{\n" +
+              "  \"name\": \"Alice\",\n" +
+              "  \"age\": 25,\n" +
+              "  \"city\": \"New York\"\n" +
+              "}";
+System.out.println(json);
+```
+
+Problems in the Old Approach
+
+-Manual concatenation (+) makes the code hard to read.
+-Escape characters (\n) clutter the string.
+-Indentation is inconsistent, affecting readability.
+
+Text Blocks, introduced in Java 13 (Preview) and finalized in Java 15, provide an easy way to work with multi-line string literals in Java.
+It provide a cleaner syntax for multi-line strings using triple quotes (""").
+
+```
+String json = """
+    {
+      "name": "Alice",
+      "age": 25,
+      "city": "New York"
+    }
+    """;
+System.out.println(json);
+```
+
+Addressed all above problems of old approach.
+By default, Text Blocks preserve indentation.
+We can remove extra spaces using .stripIndent()normalizes indentation
+
+```
+String text = """
+        Line 1
+            Line 2
+        Line 3
+        """.stripIndent();
+
+System.out.println(text);
+```
+
+☕ Instanceof Pattern Matching (Finalized from Java 16) – Cleaner type checks.
+Before Java 16, using instanceof required explicit type casting after checking an object's type.
+```
+Object obj = "Hello, Java 17!";
+
+if (obj instanceof String) {
+    String str = (String) obj;  // Manual casting required
+    System.out.println(str.toUpperCase());
+}
+```
+
+Problems in the Old Approach
+Redundant Casting ((String) obj) even after instanceof check, More boilerplate code, NullPointerException.
+```
+Object obj = "Hello, Java 17!";
+
+if (obj instanceof String str) {  // Direct variable declaration
+    System.out.println(str.toUpperCase());
+}
+```
+instanceof with Multiple Conditions
+Before
+```
+Object obj = 42;
+
+if (obj instanceof Integer) {
+    Integer num = (Integer) obj;
+    if (num > 10) {
+        System.out.println("Number is greater than 10");
+    }
+}
+```
+
+After -No unnecessary variable declaration, Combines instanceof and condition in one step
+```
+Object obj = 42;
+
+if (obj instanceof Integer num && num > 10) {
+    System.out.println("Number is greater than 10");
+}
+```
+
+Java 17 ensures instanceof always returns false for null values, avoiding NullPointerException.
+```
+Object obj = null;
+
+if (obj instanceof String str) { //  No need for explicit null checks
+    System.out.println(str.toUpperCase());  // This won't execute
+} else {
+    System.out.println("Object is null"); 
+}
+```
+
+### 2. Performance & Memory Improvements
+
+☕ ZGC (Z Garbage Collector) Enhancements — Lower latency, better scalability.
+
+Z Garbage Collector (ZGC) is a low-latency, scalable garbage collector introduced in Java 11 and improved in subsequent releases. Java 17 brings major enhancements, making it more efficient for large heaps and low-latency applications.
+
+Before Java 17: ZGC in Java 11–16
+
+Java 11: Experimental, supported heaps up to 4TB
+Java 13: Class unloading support
+Java 15: Soft max heap limit, concurrent thread stack processing
+Java 16: Support for macOS & Windows
+However, Java 17 significantly improves latency and efficiency.
+
+Lower Latency (Sub-Millisecond Pause Times)
+
+Java 17 reduces GC pause times, ensuring that GC does not exceed 1 millisecond(earlier 2–10ms), even with larger heaps (up to 16TB compare to 4TB and more efficient for large-scale applications).
+This is ideal for low-latency applications like trading systems, real-time analytics, and cloud-based services.
+Better Efficiency
+
+Reduces STW (Stop-The-World) pauses
+Thread Stack Processing fully concurrent(Earlier it was partial).
+Uses NUMA-aware allocation for better CPU efficiency.
+Enable ZGC in Java 17? Simply use the -XX:+UseZGC JVM option:
+
+```
+#Works out-of-the-box without tuning.
+java -XX:+UseZGC -Xmx16G -jar myapp.jar 
+```
+
+When to Use ZGC?
+-Low-latency applications (Trading, Gaming, AI, Real-time Analytics)
+-Microservices running in cloud environments
+-Large-memory applications (Big Data, Machine Learning)
+
+☕ Shenandoah GC Improvements — Faster pause times.
+<img width="599" height="406" alt="image" src="https://github.com/user-attachments/assets/64ecba33-ed1e-44fb-ae15-864b34e29efd" />
+
+
+☕ Always-Strict Floating Point Semantics — Ensures predictable floating-point operations.
+
+Before Java 17, floating-point calculations in Java were sometimes affected by platform-specific optimizations, leading to: Inconsistent results across different JVM implementations
+Needed strictfp for Consistency- Without strictfp, results might vary across platforms.
+
+```
+public strictfp class FloatingPointExample {
+    public static void main(String[] args) {
+        double result = 0.1 + 0.2;
+        System.out.println("Result: " + result);
+    }
+}
+```
+
+Java 17 enforces strict floating-point semantics globally, The strictfp keyword is no longer needed because all floating-point calculations now follow strict IEEE 754 rules.
+Always-Strict Mode (Predictable Behavior)- Ensures consistent calculations across all platforms.
+
+```
+public class FloatingPointExample {
+    public static void main(String[] args) {
+        double result = 0.1 + 0.2;
+        System.out.println("Result: " + result);
+    }
+}
+```
+
+Other changes
+New APIs & Enhancements Security & Cryptography Improvements and Other Internal Improvements.
