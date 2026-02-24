@@ -121,6 +121,16 @@
     - [Q. ***Give me an example of design pattern which is based upon open closed principle?***](#q-give-me-an-example-of-design-pattern-which-is-based-upon-open-closed-principle)
     - [Q. ***What is Law of Demeter violation? Why it matters?***](#q-what-is-law-of-demeter-violation-why-it-matters)
     - [Q. ***What is differences between External Iteration and Internal Iteration?***](#q-what-is-differences-between-external-iteration-and-internal-iteration)
+- [JAVA 11 Features](#java-11-features)
+  - [1. Local-Variable Syntax for Lambda Parameters](#1-local-variable-syntax-for-lambda-parameters)
+  - [2. New String Methods](#2-new-string-methods)
+  - [3. HTTP Client (Standard)](#3-http-client-standard)
+  - [4. Files.readString() and Files.writeString()](#4-filesreadstring-and-fileswritestring)
+  - [5. Running Java Files without Compilation (Single-File Source-Code Programs)](#5-running-java-files-without-compilation-single-file-source-code-programs)
+  - [6. Deprecated and Removed Features](#6-deprecated-and-removed-features)
+- [JAVA 17 Features](#java-17-features)
+  - [Language Features](#language-features)
+  - [2. Performance \& Memory Improvements](#2-performance--memory-improvements)
 
 <br/>
 
