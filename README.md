@@ -3092,5 +3092,120 @@ The Object class is the parent class of all the classes in java by default.
     <b><a href="#">↥ back to top</a></b>
 </div>
 
+
+## JAVA 11 Features
+
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/896b7d3a-146e-46ca-9f1e-52c391ce0605" />
+
+Feature Benefit var In Lambdas, Shorter and cleaner code. New String Methods: Easier string handling. Standard HTTP Client: Easy and modern HTTP requests. 
+Simplified File IO Easy file read/write. Run Java files directly. No need to compile separately. Deprecated/Removed APIs Cleaner, updated JDK.
+
+### 1. Local-Variable Syntax for Lambda Parameters
+In Java 10, we could use var for local variables, but Java 11 allows var Inside lambda expressions, too!
+
+```
+import java.util.List;
+public class VarInLambda {
+    public static void main(String[] args) {
+        List<String> list = List.of("apple", "banana", "cherry");
+        list.forEach((var item) -> System.out.println(item.toUpperCase()));
+    }
+}
+```
+-Why useful?
+Enables adding annotations to lambda parameters.
+Makes code shorter and readable.
+
+### 2. New String Methods
+Java 11 added useful methods in the String class:
+
+Method Description isBlank() Checks if a string is empty or only contains whitespace. 
+lines() Splits a string into a stream of lines. strip(), stripLeading(), stripTrailing() Trim spaces based on Unicode. repeat(int) Repeats a string n times.
+
+```
+public class StringMethods {
+    public static void main(String[] args) {
+        String str = "   Java 11  ";
+System.out.println(str.isBlank());  // false
+        str.lines().forEach(System.out::println); // Splits lines if present
+        System.out.println(str.strip());    // "Java 11"
+        System.out.println(str.repeat(3));  // "   Java 11     Java 11     Java 11  "
+    }
+}
+```
+-Why useful?
+Easier and cleaner text processing.
+
+### 3. HTTP Client (Standard)
+Java 9 introduced an incubator HTTP Client API, but in Java 11, it’s now a standard feature.
+
+```
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class HttpClientExample {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI("https://api.github.com"))
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.statusCode());
+        System.out.println(response.body());
+    }
+}
+```
+-Why useful?
+No need for third-party libraries like Apache HttpClient.
+Asynchronous and synchronous requests made easy.
+
+### 4. Files.readString() and Files.writeString()
+Simplified file reading/writing operations!
+
+```
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+public class FileReadWrite {
+    public static void main(String[] args) throws Exception {
+        Path path = Path.of("sample.txt");
+        // Write String to file
+        Files.writeString(path, "Hello Java 11!");
+        // Read String from file
+        String content = Files.readString(path);
+        System.out.println(content);
+    }
+}
+```
+-Why useful?
+No need for BufferedReader or InputStream/OutputStream when dealing with simple files.
+
+### 5. Running Java Files without Compilation (Single-File Source-Code Programs)
+You can run simple Java programs directly without manually compiling with javac first!
+
+```
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java 11!");
+    }
+}
+```
+Now run directly:
+```java HelloWorld.java```
+
+-Why useful?
+Great for small scripts, testing code quickly, or learning.
+
+### 6. Deprecated and Removed Features
+Some things were removed or deprecated:
+
+Java EE modules like javax.xml.bind (JAXB) are removed.
+Applets and WebStart are deprecated.
+Use external libraries if needed (e.g., Jakarta EE for JAXB).
+
+
 ![IMG_7978](https://github.com/user-attachments/assets/9c9d7504-f29b-4d0d-9344-299feb919d9d)
 
