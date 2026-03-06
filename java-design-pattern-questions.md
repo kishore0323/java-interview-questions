@@ -1,5 +1,22 @@
 # Java Design Pattern Questions and Answers
 
+- [Java Design Pattern Questions and Answers](#java-design-pattern-questions-and-answers)
+  - [Q. Exaplain MVC, Front-Controller, DAO, DTO, Service-Locator, Prototype design patterns?](#q-exaplain-mvc-front-controller-dao-dto-service-locator-prototype-design-patterns)
+  - [Q. What are the design patterns available in Java?](#q-what-are-the-design-patterns-available-in-java)
+  - [Q. Explain Singleton Design Pattern in Java?](#q-explain-singleton-design-pattern-in-java)
+  - [Q. Explain Adapter Design Pattern in Java?](#q-explain-adapter-design-pattern-in-java)
+  - [Q. Explain Factory Design Pattern in Java?](#q-explain-factory-design-pattern-in-java)
+  - [Q. Explain Strategy Design Pattern in Java?](#q-explain-strategy-design-pattern-in-java)
+      - [Q. When do you use Flyweight pattern?](#q-when-do-you-use-flyweight-pattern)
+      - [Q. What is difference between dependency injection and factory design pattern?](#q-what-is-difference-between-dependency-injection-and-factory-design-pattern)
+      - [Q. Difference between Adapter and Decorator pattern?](#q-difference-between-adapter-and-decorator-pattern)
+      - [Q. Difference between Adapter and Proxy Pattern?](#q-difference-between-adapter-and-proxy-pattern)
+      - [Q. What is Template method pattern?](#q-what-is-template-method-pattern)
+      - [Q. When do you use Visitor design pattern?](#q-when-do-you-use-visitor-design-pattern)
+      - [Q. When do you use Composite design pattern?](#q-when-do-you-use-composite-design-pattern)
+      - [Q. Difference between Abstract factory and Prototype design pattern?](#q-difference-between-abstract-factory-and-prototype-design-pattern)
+
+
 ## Q. Exaplain MVC, Front-Controller, DAO, DTO, Service-Locator, Prototype design patterns?
 
 **2. Front-Controller**

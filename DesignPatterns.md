@@ -1,4 +1,16 @@
 
+- [1. **Factory Method Pattern**](#1-factory-method-pattern)
+- [2. **Singleton Pattern**](#2-singleton-pattern)
+- [3. **Builder Pattern**](#3-builder-pattern)
+- [4. **Prototype Pattern**](#4-prototype-pattern)
+- [5. **Adapter Pattern**](#5-adapter-pattern)
+- [6. **Decorator Pattern**](#6-decorator-pattern)
+- [7. **Facade Pattern**](#7-facade-pattern)
+- [8. **Strategy Pattern**](#8-strategy-pattern)
+- [9. **Observer Pattern**](#9-observer-pattern)
+- [10. **State Pattern**](#10-state-pattern)
+
+
 Here's a detailed explanation of each of the mentioned design patterns along with example code in Java:
 
 ### 1. **Factory Method Pattern**

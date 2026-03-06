@@ -2,7 +2,6 @@
 
 ![TypeScript Cheat Sheet (LIGHT)](https://github.com/user-attachments/assets/42c692e3-c914-47fc-bd3f-9a9ad88778bd)
 
-
 ### Table of Contents
 
 | No. | Questions |

@@ -1,5 +1,12 @@
 This repository contains tips and resources to prepare for Behavioral interviews.
 
+- [✅ Top 10 Behavioral Interview Questions](#-top-10-behavioral-interview-questions)
+- [✅ General Tips to succeed in Behavioral Interviews](#-general-tips-to-succeed-in-behavioral-interviews)
+- [🌟 STAR Framework](#-star-framework)
+- [🚀 Questions](#-questions)
+- [？Questions you can ask the interviewer](#questions-you-can-ask-the-interviewer)
+
+
 ## ✅ Top 10 Behavioral Interview Questions
 
 Top 10 Interview Questions and how to answer them during an interview:
