@@ -338,6 +338,30 @@ Boundaries → Data ownership → Communication → Consistency → Resilience �
 
 https://medium.com/cloud-native-daily/what-are-12-factor-principles-of-cloud-native-microservices-eb25e95e5906
 
+The 12-Factor App
+|No.|	Factor	|Meaning	| Java / Spring Boot angle|
+|---|---------|----------|------------------------|
+|1|	Codebase|	One codebase in version control, many deploys	One repo per service (or clear mono-repo structure)|
+|2|	Dependencies|	Declare and isolate dependencies explicitly	Maven/Gradle; no reliance on system-wide libs; fat JAR|
+|3|	Config|	Store config in the environment, not in code	application.yml profiles, env vars, Spring Cloud Config, Kubernetes ConfigMaps/Secrets|
+|4|	Backing services|	Treat DB, cache, and queue as attached resources	Swap Oracle/Redis/Kafka by changing a URL, not code|
+|5|	Build, release, run|	Strictly separate the three stages	CI builds an immutable image; release = image + config|
+|6|	Processes|	Run as stateless processes; share-nothing	No sticky sessions; use Redis or JWT for state|
+|7|	Port binding|	The app exports services via a port	Embedded Tomcat/Netty in Spring Boot|
+|8|	Concurrency|	Scale out via the process model	Horizontal scaling with Kubernetes replicas / HPA|
+|9|	Disposability|	Fast startup, graceful shutdown	server.shutdown=graceful, handle SIGTERM, drain in-flight requests|
+|10|	Dev/prod parity|	Keep environments as similar as possible	Docker, Testcontainers, same backing services|
+|11|	Logs|	Treat logs as event streams	Write to stdout; ship via ELK/Splunk/Fluentd|
+|12|	Admin| processes	Run admin tasks as one-off processes	Flyway/Liquibase migrations, Kubernetes Jobs|
+
+|13| API first ||
+|14|Telemetry (metrics, tracing, health checks)||
+|15|Authentication and authorization (security as a first-class concern)||
+
+Mnemonic: Code -> Deps -> Config -> Backing -> Build -> Processes -> Port -> Concurrency -> Disposability -> Parity -> Logs -> Admin.
+Beyond 12 the "15-Factor" additions: -> API First -> Telemtry -> Authn & Authz 
+
+
 ## 3. What are the main benefits of using _microservices_?
 
 Let's look at the main advantages of using microservices:
