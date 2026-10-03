@@ -322,6 +322,17 @@ https://reactjava.substack.com/p/the-10-microservices-best-practices
 #### One-Line Memory Skeleton
 Boundaries → Data ownership → Communication → Consistency → Resilience → Automation → Observability → Security
 
+#### Microservices Principles: 1-Page Cheat Sheet
+|No.|Pillar	|Key Principles (one line each)|
+|---|----|------------|
+|1.| Boundaries & Design	| Single responsibility per service. Bounded context (DDD). Loose coupling, high cohesion. API-first with versioned, backward-compatible contracts. Autonomy per team. Stateless services. Smart endpoints, dumb pipes.|
+|2.| Data Ownership	|Database per service. No shared DB, no cross-service joins. Use API composition or CQRS for reads.|
+|3.| Communication|	Sync (REST/gRPC) for immediate responses. Async (Kafka) for decoupled flows. Idempotent APIs make retries safe.|
+|4.| Consistency	|Eventual consistency across services. Saga (orchestration or choreography) instead of 2PC. Outbox pattern for atomic DB write + event publish.|
+|5.| Resilience	|Timeout → Retry (backoff + jitter) → Circuit breaker → Bulkhead → Fallback. Add rate limiting and health probes (liveness/readiness). Tool: Resilience4j.|
+|6.| Automation & Ops|	CI/CD + IaC. Docker + Kubernetes. Independent deployability. Zero-downtime releases (blue-green, canary, rolling). Externalized config. Horizontal scaling per service.|
+|7.| Observability|	Centralized logs with correlation IDs. Metrics (latency, traffic, errors, saturation). Distributed tracing (OpenTelemetry, Jaeger). Alerts tied to SLIs/SLOs.|
+|8. |Security|	Zero trust. OAuth2/OIDC/JWT at the gateway. RBAC and least privilege. mTLS between services. Secrets in Vault. TLS in transit, encryption at rest.|
 
 ## 2B. Microservices 12 Factors App Methodology?
 
