@@ -266,7 +266,7 @@ https://reactjava.substack.com/p/the-10-microservices-best-practices
 |9|	Statelessness|	No session state in the service. Externalize it to Redis, a DB, or JWT.|
 |10|	Decentralized Governance|	Teams pick the right tech for their service, within agreed standards.|
 #### 2. Communication and Data Principles
-|	No.|Principle	|Crisp Explanation|
+|	No.|Principle	| Explanation|
 |----|------------|---------------|
 |11|	Sync vs. Async|	REST/gRPC when you need an immediate response. Kafka/events for decoupled, scalable flows.|
 |12|	Eventual Consistency|	Accept it across services. Avoid distributed transactions (2PC).|
@@ -275,7 +275,7 @@ https://reactjava.substack.com/p/the-10-microservices-best-practices
 |15|	CQRS / Event Sourcing|	Separate read and write models where scale or audit demands it.|
 |16|	Idempotency	|The same request, repeated, gives the same result. This makes retries safe.|
 #### 3. Resilience Principles (Design for Failure)
- |No.|	Principle|	Crisp Explanation|
+ |No.|	Principle| Explanation|
 |----|------------|---------------|
 |17|	|Timeouts|Never wait forever on a remote call.|
 |18|	Retry with Backoff + Jitter	| Retry transient failures without causing a retry storm.|
