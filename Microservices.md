@@ -253,27 +253,28 @@ https://reactjava.substack.com/p/the-10-microservices-best-practices
 
 Core Microservices Architecture Principles
 #### 1. Design Principles
-#	Principle	Crisp Explanation
-1	Single Responsibility	One service does one business capability well.
-2	Bounded Context (DDD)	Service boundaries follow business domains, not technical layers.
-3	Loose Coupling	Services interact only through stable contracts (APIs/events) and hide internals.
-4	High Cohesion	Related logic lives together in one service.
-5	Database per Service	Each service owns its data. No shared DB, no cross-service joins.
-6	API First / Contract First	Define the contract (OpenAPI/AsyncAPI) before coding. Version it, keep it backward compatible.
-7	Autonomy	A team can build, test, deploy, and scale its service independently.
-8	Smart Endpoints, Dumb Pipes	Business logic stays in services. The transport (HTTP, Kafka) stays simple.
-9	Statelessness	No session state in the service. Externalize it to Redis, a DB, or JWT.
-10	Decentralized Governance	Teams pick the right tech for their service, within agreed standards.
+| No | Principle	| Explanation|
+|----|------------|---------------|
+|1|	Single Responsibility|	One service does one business capability well.|
+|2| Bounded Context (DDD)|	Service boundaries follow business domains, not technical layers.|
+|3|	Loose Coupling|	Services interact only through stable contracts (APIs/events) and hide internals.|
+|4|	High Cohesion|	Related logic lives together in one service.|
+|5|	Database per Service|	Each service owns its data. No shared DB, no cross-service joins.|
+|6|	API First / Contract First|	Define the contract (OpenAPI/AsyncAPI) before coding. Version it, keep it backward compatible.|
+|7|	Autonomy|	A team can build, test, deploy, and scale its service independently.|
+|8|	Smart Endpoints, Dumb Pipes|	Business logic stays in services. The transport (HTTP, Kafka) stays simple.|
+|9|	Statelessness|	No session state in the service. Externalize it to Redis, a DB, or JWT.|
+|10|	Decentralized Governance|	Teams pick the right tech for their service, within agreed standards.|
 #### 2. Communication and Data Principles
-#	Principle	Crisp Explanation
+	Principle	Crisp Explanation
 11	Sync vs. Async	REST/gRPC when you need an immediate response. Kafka/events for decoupled, scalable flows.
 12	Eventual Consistency	Accept it across services. Avoid distributed transactions (2PC).
 13	Saga Pattern	Manage distributed transactions through local transactions plus compensating actions.
 14	Outbox Pattern	Write the DB change and the event atomically, then publish reliably.
 15	CQRS / Event Sourcing	Separate read and write models where scale or audit demands it.
 16	Idempotency	The same request, repeated, gives the same result. This makes retries safe.
-3. Resilience Principles (Design for Failure)
-#### #	Principle	Crisp Explanation
+#### 3. Resilience Principles (Design for Failure)
+ 	Principle	Crisp Explanation
 17	Timeouts	Never wait forever on a remote call.
 18	Retry with Backoff + Jitter	Retry transient failures without causing a retry storm.
 19	Circuit Breaker	Stop calling a failing dependency and fail fast.
@@ -282,7 +283,7 @@ Core Microservices Architecture Principles
 22	Rate Limiting / Throttling	Protect services from overload.
 23	Health Checks	Liveness and readiness probes so the platform can heal itself.
 #### 4. Operational Principles
-#	Principle	Crisp Explanation
+ Principle	Crisp Explanation
 24	Automation (CI/CD, IaC)	Build, test, and deploy everything automatically.
 25	Containerization and Orchestration	Docker and Kubernetes for consistent, scalable deployments.
 26	Independent Deployability	Deploy one service without redeploying others.
@@ -290,7 +291,7 @@ Core Microservices Architecture Principles
 28	Externalized Configuration	Config and secrets live outside the code (12-factor).
 29	Horizontal Scalability	Scale each service independently by adding instances.
 #### 5. Observability Principles
-#	Principle	Crisp Explanation
+	Principle	Crisp Explanation
 30	Centralized Logging	All logs aggregated (ELK/Splunk) with correlation IDs.
 31	Metrics and Monitoring	Track latency, traffic, errors, and saturation (the golden signals).
 32	Distributed Tracing	Follow a single request across services (OpenTelemetry, Zipkin, Jaeger).
