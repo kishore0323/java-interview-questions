@@ -245,7 +245,9 @@ Microservices are advantageous for certain types of projects:
 - **Autonomous Teams**: For bigger organizations with multiple teams that need to work independently.
 <br>
 
-## 2. Can you describe the principles behind the _microservices architecture_?
+## 2A. Can you describe the principles behind the _microservices architecture_?
+
+https://reactjava.substack.com/p/the-10-microservices-best-practices
 
 **Microservices** is an architectural style that structures an application as a collection of small, loosely coupled services. Each service is self-contained, focused on a specific business goal, and can be developed, deployed, and maintained independently.
 
@@ -324,6 +326,10 @@ public class LoanService {
 }
 ```
 <br>
+
+## 2B. Microservices 12 Factors App Methodology?
+
+https://medium.com/cloud-native-daily/what-are-12-factor-principles-of-cloud-native-microservices-eb25e95e5906
 
 ## 3. What are the main benefits of using _microservices_?
 
