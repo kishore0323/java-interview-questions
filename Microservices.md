@@ -1197,6 +1197,82 @@ public class OrderService {
 <br>
 
 
+## 16. What are the _SOLID principles_ of object-oriented design?
+
+**SOLID** is an acronym that represents the five basic principles of **object-oriented programming**. These guidelines help to enhance code readability, reusability, and maintainability.
+
+### The SOLID Principles
+
+1. **Single Responsibility Principle** (SRP)
+   A class should have only one reason to change. In other words, it should have only one responsibility.
+
+2. **Open/Closed Principle** (OCP)
+   A module (i.e., a function or a class) should be open for extension, but closed for modification.
+
+3. **Liskov Substitution Principle** (LSP)
+   Derived classes should be substitutable for their base classes, meaning that they should share the same interface and be used interchangeably with objects of the base class.
+
+4. **Interface Segregation Principle** (ISP)
+   Many client-specific interfaces are better than one general-purpose interface.
+
+5. **Dependency Inversion Principle** (DIP)
+   High-level modules should not depend on low-level modules. Both should depend on abstractions. Additionally, abstractions should not depend on details; details should depend on abstractions.
+
+### What the SOLID Principles Mean
+
+- **SRP**: A class should be responsible for doing one thing and doing it well.
+
+- **OCP**: Systems should be designed so that they are open for extension but closed for modification. This generally means that when new functionality is required or specifications change, the existing code should not need to be modified. Instead, the code should be easy to extend so that new functionality can be added.
+
+- **LSP**: This principle deals with whether a derived class is a true subtype of the base class. Essentially, it means that derived classes should not change the behavior of the base class.
+
+- **ISP**: This principle deals with the idea that classes or modules should not have to depend on interfaces that they don't use. It's better to have multiple small, specific interfaces than one large general one.
+
+- **DIP**: A high-level class should not care about the details of its dependencies. This means that interfaces or abstractions should be used instead of concrete implementations.
+  <br>
+
+## 17. When should the _Singleton pattern_ be applied and what are its drawbacks?
+
+While the Singleton pattern offers benefits such as a single point of access and delayed instantiation, its drawbacks and potential misapplications are worth considering.
+
+### Key Considerations
+
+#### Scope of Singleton Behavior
+
+The Singleton pattern isn't always the most suitable for enabling unique global access. Classes managed by dependency injection (DI) frameworks, for instance, often provide more adaptable and testable mechanisms for context-driven singletons.
+
+### Drawbacks of the Singleton Pattern
+
+1.  **Hidden Dependencies**: The use of singletons can introduce implicit and potentially unexpected dependencies. This can make the codebase more challenging to understand and debug.
+
+2.  **Violation of the Single Responsibility Principle**: Singletons often manage their own lifespan and state, going beyond the scope of their primary responsibilities.
+
+3.  **Memory Management Baggage**: Systems using singletons need to manage memory manually, which can be tedious and error-prone.
+
+4.  **Thread Safety Complexity**: Ensuring thread safety in a multithreaded environment can be complex and, if done incorrectly, lead to performance bottlenecks or data inconsistencies.
+
+5.  **Testability Concerns**: Code featuring singletons can be hard to test in isolation, as they introduce global state.
+
+6.  **Encapsulation Limitations**: Although singletons encapsulate their state within their class, the structure can lead to tight coupling throughout the codebase.
+
+7.  **Potential for Abuse and Overuse**: Over-reliance on singleton patterns can lead to a monolithic architecture, making the system less flexible and harder to maintain.
+
+### Best Practices for Singleton Usage
+
+Considering the potential drawbacks, it's good to adhere to these best practices:
+
+1. **Use Singleton with Caution**: Evaluate if other design patterns, such as factory patterns, or frameworks like DI might be a better fit.
+
+2. **Deliver Concise Responsibilities**: Let a singleton manage one responsibility or functionality.
+
+3. **Apply Lazy Initialization Judiciously**: While delaying creation can save resources, verify that it doesn't introduce state inconsistency.
+
+4. **Ensure Thread Safety When Appropriate**: Utilize methods like double-checked locking or initialize-on-demand patterns in multithreaded environments to maintain data integrity.
+
+5. **Focus on Maintaining Global State**: If your primary goal is to preserve global state, view the singleton pattern as one of the tools at your disposal.
+
+6. **Use DI for Wider Flexibility**: Combine the benefits of DI with the clarity and convenience of singleton where it makes sense.
+
 # 85 Essential Software Architecture Interview Questions
 
 <br>
@@ -1889,81 +1965,6 @@ In **microservices**, the system is broken down into small, independent services
 - **Operational Overhead**: Managing multiple services, each with its stack, adds operational complexity.
   <br>
 
-## 14. What are the _SOLID principles_ of object-oriented design?
-
-**SOLID** is an acronym that represents the five basic principles of **object-oriented programming**. These guidelines help to enhance code readability, reusability, and maintainability.
-
-### The SOLID Principles
-
-1. **Single Responsibility Principle** (SRP)
-   A class should have only one reason to change. In other words, it should have only one responsibility.
-
-2. **Open/Closed Principle** (OCP)
-   A module (i.e., a function or a class) should be open for extension, but closed for modification.
-
-3. **Liskov Substitution Principle** (LSP)
-   Derived classes should be substitutable for their base classes, meaning that they should share the same interface and be used interchangeably with objects of the base class.
-
-4. **Interface Segregation Principle** (ISP)
-   Many client-specific interfaces are better than one general-purpose interface.
-
-5. **Dependency Inversion Principle** (DIP)
-   High-level modules should not depend on low-level modules. Both should depend on abstractions. Additionally, abstractions should not depend on details; details should depend on abstractions.
-
-### What the SOLID Principles Mean
-
-- **SRP**: A class should be responsible for doing one thing and doing it well.
-
-- **OCP**: Systems should be designed so that they are open for extension but closed for modification. This generally means that when new functionality is required or specifications change, the existing code should not need to be modified. Instead, the code should be easy to extend so that new functionality can be added.
-
-- **LSP**: This principle deals with whether a derived class is a true subtype of the base class. Essentially, it means that derived classes should not change the behavior of the base class.
-
-- **ISP**: This principle deals with the idea that classes or modules should not have to depend on interfaces that they don't use. It's better to have multiple small, specific interfaces than one large general one.
-
-- **DIP**: A high-level class should not care about the details of its dependencies. This means that interfaces or abstractions should be used instead of concrete implementations.
-  <br>
-
-## 15. When should the _Singleton pattern_ be applied and what are its drawbacks?
-
-While the Singleton pattern offers benefits such as a single point of access and delayed instantiation, its drawbacks and potential misapplications are worth considering.
-
-### Key Considerations
-
-#### Scope of Singleton Behavior
-
-The Singleton pattern isn't always the most suitable for enabling unique global access. Classes managed by dependency injection (DI) frameworks, for instance, often provide more adaptable and testable mechanisms for context-driven singletons.
-
-### Drawbacks of the Singleton Pattern
-
-1.  **Hidden Dependencies**: The use of singletons can introduce implicit and potentially unexpected dependencies. This can make the codebase more challenging to understand and debug.
-
-2.  **Violation of the Single Responsibility Principle**: Singletons often manage their own lifespan and state, going beyond the scope of their primary responsibilities.
-
-3.  **Memory Management Baggage**: Systems using singletons need to manage memory manually, which can be tedious and error-prone.
-
-4.  **Thread Safety Complexity**: Ensuring thread safety in a multithreaded environment can be complex and, if done incorrectly, lead to performance bottlenecks or data inconsistencies.
-
-5.  **Testability Concerns**: Code featuring singletons can be hard to test in isolation, as they introduce global state.
-
-6.  **Encapsulation Limitations**: Although singletons encapsulate their state within their class, the structure can lead to tight coupling throughout the codebase.
-
-7.  **Potential for Abuse and Overuse**: Over-reliance on singleton patterns can lead to a monolithic architecture, making the system less flexible and harder to maintain.
-
-### Best Practices for Singleton Usage
-
-Considering the potential drawbacks, it's good to adhere to these best practices:
-
-1. **Use Singleton with Caution**: Evaluate if other design patterns, such as factory patterns, or frameworks like DI might be a better fit.
-
-2. **Deliver Concise Responsibilities**: Let a singleton manage one responsibility or functionality.
-
-3. **Apply Lazy Initialization Judiciously**: While delaying creation can save resources, verify that it doesn't introduce state inconsistency.
-
-4. **Ensure Thread Safety When Appropriate**: Utilize methods like double-checked locking or initialize-on-demand patterns in multithreaded environments to maintain data integrity.
-
-5. **Focus on Maintaining Global State**: If your primary goal is to preserve global state, view the singleton pattern as one of the tools at your disposal.
-
-6. **Use DI for Wider Flexibility**: Combine the benefits of DI with the clarity and convenience of singleton where it makes sense.
    <br>
 
 <br>
