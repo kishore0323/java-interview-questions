@@ -8,33 +8,33 @@
 	                                .collect(Collectors.toList());
 ```
 #### Q2. Find the frequency of each character/word in a String.
-	```
+```
 	String input = "interview";
 	Map<String, Long> frequencyMap = Arrays.stream(input.split(""))
 	    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 ```
 #### Q3. Find the maximum and minimum values in a list of integers.
-	```
+```
 	List<Integer> numbers = Arrays.asList(3, 15, 7, 92, 11);
 	int max = numbers.stream().max(Integer::compare).get();
 	int min = numbers.stream().min(Integer::compare).get();
 ```
 #### Q4. Filter a list of strings to only include those that start with a number.
-	```
+```
 	List<String> list = Arrays.asList("Apple", "2Apple", "Orange", "3Orange");
 	List<String> result = list.stream()
 	                          .filter(s -> Character.isDigit(s.charAt(0)))
 	                          .collect(Collectors.toList());
 ```
 #### Q5. Find the sum of all digits of a number.
-	```
+```
 	int number = 12345;
 	int sum = String.valueOf(number).chars()
 	                .map(Character::getNumericValue)
 	                .sum();
 ```
 #### Q6. Find the second largest number in an array/list.
-	```
+```
 	List<Integer> numbers = Arrays.asList(4, 5, 1, 9, 2, 9, 7);
 	int secondLargest = numbers.stream()
 	                           .distinct()
@@ -44,7 +44,7 @@
 	                           .orElseThrow();
 ```
 #### Q7. Difference between map() and flatMap()
-	```
+```
 	// map() transforms a stream of elements
 	List<String> upper = names.stream().map(String::toUpperCase).collect(Collectors.toList());
 
@@ -54,7 +54,7 @@
 ```
 	
 #### Q8. Find the first non-repeating character in a string.
-	```
+```
 	String input = "swiss";
 	Character result = input.chars()
 	    .mapToObj(c -> (char) c)
@@ -66,7 +66,7 @@
 	    .orElse(null);
 ```
 #### Q9. Merge two arrays/lists, remove duplicates, and sort them.
-	```
+```
 	List<Integer> list1 = Arrays.asList(1, 3, 5);
 	List<Integer> list2 = Arrays.asList(3, 4, 6);
 	List<Integer> merged = Stream.concat(list1.stream(), list2.stream())
@@ -89,12 +89,12 @@
 		    ));
 ```
 #### Q12. Separate employees who are older than 30 from those who are younger (Partitioning).
-	```
+```
 	Map<Boolean, List<Employee>> partitionedEmployees = empList.stream()
 		    .collect(Collectors.partitioningBy(e -> e.getAge() > 30));
 ```
 #### Q13. Calculate the average age of male and female employees.
-	```
+```
 	Map<String, Double> avgAgeByGender = empList.stream()
 		    .collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
 ```
