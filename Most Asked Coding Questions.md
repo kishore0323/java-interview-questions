@@ -138,6 +138,253 @@ public int bestTimeToBuyAndSellStock(int[] prices) {
 	}
 ```
 
+#### Q3. Product of Array Except Self
+```
+public int[] productExceptSelf(int[] nums) {
+		int n = nums.length;
+		int[] answer = new int[n];
+
+		Arrays.fill(answer, 1);
+		for (int i = 0; i < n; i++) {
+			// Compute the product of all except arr[i]
+			for (int j = 0; j < n; j++) {
+				if (i != j) {
+					answer[i] *= nums[j];
+				}
+			}
+		}
+
+		return answer;
+	}
+```
+
+### Q4. Sort Colors
+```
+public void sortColors(int[] nums) {
+		int low = 0; // Pointer for the next position of 0
+		int mid = 0; // Pointer for the current element
+		int high = nums.length - 1; // Pointer for the next position of 2
+
+		// Iterate through the array
+        while (mid <= high) {
+            if (nums[mid] == 0) {
+                // Swap nums[low] and nums[mid]
+                swap(nums, low, mid);
+                low++;
+                mid++;
+            } else if (nums[mid] == 1) {
+                mid++;
+            } else {
+                // Swap nums[mid] and nums[high]
+                swap(nums, mid, high);
+                high--;
+            }
+        }
+	}
+
+	// Utility function to swap elements in the array
+	private void swap(int[] nums, int i, int j) {
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
+	}
+```
+
+### Q5. Merge Intervals 
+```
+static ArrayList<ArrayList<Integer>> mergeOverlap(int[][] arr) {
+
+		// Sort intervals based on start values
+		Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));
+
+		ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+
+		ArrayList<Integer> first = new ArrayList<>();
+		first.add(arr[0][0]);
+		first.add(arr[0][1]);
+		res.add(first);
+
+		for (int i = 1; i < arr.length; i++) {
+			ArrayList<Integer> last = res.get(res.size() - 1);
+			int[] curr = arr[i];
+
+			// If current interval overlaps with the last merged interval,
+			// merge them
+			if (curr[0] <= last.get(1))
+				last.set(1, Math.max(last.get(1), curr[1]));
+			else {
+				ArrayList<Integer> interval = new ArrayList<>();
+				interval.add(curr[0]);
+				interval.add(curr[1]);
+				res.add(interval);
+			}
+		}
+
+		return res;
+}
+```
+
+### Q6. Search in Rotated Sorted Array 
+```
+public int search(int[] nums, int target) {
+		int left = 0;
+		int right = nums.length - 1;
+
+		while (left <= right) {
+			int mid = left + (right - left) / 2;
+
+			// Check if we found the target
+			if (nums[mid] == target) {
+				return mid;
+			}
+
+			// Determine which side is sorted
+			if (nums[left] <= nums[mid]) { // Left side is sorted
+				if (nums[left] <= target && target < nums[mid]) {
+					right = mid - 1; // Target is in the left half
+				} else {
+					left = mid + 1; // Target is in the right half
+				}
+			} else { // Right side is sorted
+				if (nums[mid] < target && target <= nums[right]) {
+					left = mid + 1; // Target is in the right half
+				} else {
+					right = mid - 1; // Target is in the left half
+				}
+			}
+		}
+
+		return -1; // Target not found
+	}
+```
+
+### Q7. Move Zeros
+```
+static void moveZeroes(int[] nums) {
+		if (nums == null || nums.length <= 1) {
+			return;
+		}
+
+		int left = 0; // Tracks the position for the next non-zero element
+
+		for (int right = 0; right < nums.length; right++) {
+			if (nums[right] != 0) {
+				// Swap elements at left and right pointers
+				int temp = nums[left];
+				nums[left] = nums[right];
+				nums[right] = temp;
+
+				left++;
+			}
+		}
+	}
+```
+
+### Q8. Maximum Sum Subarray 
+```
+public int maxSubArray(int[] nums) {
+		// Initialize variables to track the current and maximum sums
+		int currentSum = nums[0];
+		int maxSum = nums[0];
+
+		// Iterate through the array starting from the second element
+		for (int i = 1; i < nums.length; i++) {
+			// Update the current sum to be either the current element or the current sum plus the current element
+			currentSum = Math.max(nums[i], currentSum + nums[i]);
+			// Update the maximum sum if the current sum is greater
+			maxSum = Math.max(maxSum, currentSum);
+		}
+
+		return maxSum;
+	}
+```
+
+### Q9. Container with Most Water
+```
+public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int maxWater = 0;
+
+        while (left < right) {
+            int width = right - left;
+            int containerHeight = Math.min(height[left], height[right]);
+
+            maxWater = Math.max(maxWater, width * containerHeight);
+
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxWater;
+}
+```
+
+### Q10. Maximum Product Subarray
+```
+public int maxProduct(int[] nums) {
+        int maxEndingHere = nums[0];
+        int minEndingHere = nums[0];
+        int maxProduct = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            int current = nums[i];
+
+            // A negative number swaps the roles of max and min.
+            if (current < 0) {
+                int temp = maxEndingHere;
+                maxEndingHere = minEndingHere;
+                minEndingHere = temp;
+            }
+
+            maxEndingHere = Math.max(current, maxEndingHere * current);
+            minEndingHere = Math.min(current, minEndingHere * current);
+
+            maxProduct = Math.max(maxProduct, maxEndingHere);
+        }
+
+        return maxProduct;
+}
+```
+
+### Q11. Minimum Subarray
+```
+public int minSubArray(int[] nums) {
+		int minEndingHere = nums[0];
+		int minSoFar = nums[0];
+
+		for (int i = 1; i < nums.length; i++) {
+			minEndingHere = Math.min(nums[i], minEndingHere + nums[i]);
+			minSoFar = Math.min(minSoFar, minEndingHere);
+		}
+
+		return minSoFar;
+	}
+```
+
+### Q12. Remove Duplicates from Sorted Array
+```
+public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        int write = 1;
+
+        for (int read = 1; read < nums.length; read++) {
+            if (nums[read] != nums[read - 1]) {
+                nums[write] = nums[read];
+                write++;
+            }
+        }
+
+        return write;
+    }
+```
+
 ### Top String Problems
 
 #### Q1. Longest Substring Without Repeating Characters
