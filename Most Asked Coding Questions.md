@@ -158,7 +158,7 @@ public int[] productExceptSelf(int[] nums) {
 	}
 ```
 
-### Q4. Sort Colors
+#### Q4. Sort Colors
 ```
 public void sortColors(int[] nums) {
 		int low = 0; // Pointer for the next position of 0
@@ -190,7 +190,7 @@ public void sortColors(int[] nums) {
 	}
 ```
 
-### Q5. Merge Intervals 
+#### Q5. Merge Intervals 
 ```
 static ArrayList<ArrayList<Integer>> mergeOverlap(int[][] arr) {
 
@@ -224,7 +224,7 @@ static ArrayList<ArrayList<Integer>> mergeOverlap(int[][] arr) {
 }
 ```
 
-### Q6. Search in Rotated Sorted Array 
+#### Q6. Search in Rotated Sorted Array 
 ```
 public int search(int[] nums, int target) {
 		int left = 0;
@@ -258,7 +258,7 @@ public int search(int[] nums, int target) {
 	}
 ```
 
-### Q7. Move Zeros
+#### Q7. Move Zeros
 ```
 static void moveZeroes(int[] nums) {
 		if (nums == null || nums.length <= 1) {
@@ -280,7 +280,7 @@ static void moveZeroes(int[] nums) {
 	}
 ```
 
-### Q8. Maximum Sum Subarray 
+#### Q8. Maximum Sum Subarray 
 ```
 public int maxSubArray(int[] nums) {
 		// Initialize variables to track the current and maximum sums
@@ -299,7 +299,7 @@ public int maxSubArray(int[] nums) {
 	}
 ```
 
-### Q9. Container with Most Water
+#### Q9. Container with Most Water
 ```
 public int maxArea(int[] height) {
         int left = 0;
@@ -323,7 +323,7 @@ public int maxArea(int[] height) {
 }
 ```
 
-### Q10. Maximum Product Subarray
+#### Q10. Maximum Product Subarray
 ```
 public int maxProduct(int[] nums) {
         int maxEndingHere = nums[0];
@@ -350,7 +350,7 @@ public int maxProduct(int[] nums) {
 }
 ```
 
-### Q11. Minimum Subarray
+#### Q11. Minimum Subarray
 ```
 public int minSubArray(int[] nums) {
 		int minEndingHere = nums[0];
@@ -365,7 +365,7 @@ public int minSubArray(int[] nums) {
 	}
 ```
 
-### Q12. Remove Duplicates from Sorted Array
+#### Q12. Remove Duplicates from Sorted Array
 ```
 public int removeDuplicates(int[] nums) {
         if (nums.length == 0) {
@@ -384,6 +384,68 @@ public int removeDuplicates(int[] nums) {
         return write;
     }
 ```
+
+#### Q13. Longest Common Prefix
+```
+public String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+
+        String prefix = strs[0];
+
+        for (int i = 1; i < strs.length; i++) {
+            while (!strs[i].startsWith(prefix)) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+
+                if (prefix.isEmpty()) {
+                    return "";
+                }
+            }
+        }
+
+        return prefix;
+    }
+
+```
+
+#### Q14. Find Minimum in Rotated Sorted Array
+```
+public int findMin(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] > nums[right]) {
+                // Minimum is to the right of mid
+                left = mid + 1;
+            } else {
+                // Minimum is at mid or to its left
+                right = mid;
+            }
+        }
+
+        return nums[left];
+    }
+```
+
+#### Q15. Meeting Room
+```
+public boolean canAttendMeetings(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] < intervals[i - 1][1]) {
+                return false; // Overlapping meetings
+            }
+        }
+
+        return true;
+    }
+```
+
 
 ### Top String Problems
 
@@ -658,6 +720,66 @@ public String reverseWords(String s) {
 
 		return reversedString.toString(); // Convert StringBuilder to String
 	}
+```
+
+
+#### Q11. Isomorphic Strigns
+```
+public boolean isIsomorphic(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int[] lastSeenS = new int[256];
+        int[] lastSeenT = new int[256];
+
+        for (int i = 0; i < s.length(); i++) {
+            char a = s.charAt(i);
+            char b = t.charAt(i);
+
+            if (lastSeenS[a] != lastSeenT[b]) {
+                return false;
+            }
+
+            lastSeenS[a] = i + 1;
+            lastSeenT[b] = i + 1;
+        }
+
+        return true;
+    }
+```
+
+#### Q12. Word Pattern
+```
+    public boolean wordPattern(String pattern, String s) {
+        String[] words = s.split(" ");
+
+        if (pattern.length() != words.length) {
+            return false;
+        }
+
+        Map<Character, String> charToWord = new HashMap<>();
+        Map<String, Character> wordToChar = new HashMap<>();
+
+        for (int i = 0; i < pattern.length(); i++) {
+            char ch = pattern.charAt(i);
+            String word = words[i];
+
+            if (charToWord.containsKey(ch) && !charToWord.get(ch).equals(word)) {
+                return false;
+            }
+
+            if (wordToChar.containsKey(word) && wordToChar.get(word) != ch) {
+                return false;
+            }
+
+            charToWord.put(ch, word);
+            wordToChar.put(word, ch);
+        }
+
+        return true;
+    }
+
 ```
 
 ## Other Problems
