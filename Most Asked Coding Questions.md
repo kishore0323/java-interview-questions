@@ -99,6 +99,320 @@
 		    .collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
 ```
 
+### Top Array Problems
+
+#### Q1. Two Sum 
+```
+public static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            
+            if (map.containsKey(nums[i])) {
+                return new int[] { map.get(nums[i]), i };
+            }
+            
+            map.put(complement, i);
+        }
+        
+        throw new IllegalArgumentException("No solution found");
+    }
+```
+
+#### Q2. Best Time to Buy and Sell Stock
+```
+public int bestTimeToBuyAndSellStock(int[] prices) {
+		int minPrice = Integer.MAX_VALUE;
+		int maxProfit = 0;
+
+		for (int price : prices) {
+			if (price < minPrice) {
+				minPrice = price; // Update min price if a lower price is found
+			} else if (price - minPrice > maxProfit) {
+				maxProfit = price - minPrice; // Calculate profit and update max profit if higher
+			}
+		}
+
+		return maxProfit;
+	}
+```
+
+### Top String Problems
+
+#### Q1. Longest Substring Without Repeating Characters
+
+```
+public int lengthOfLongestSubstring(String s) {
+		HashMap<Character, Integer> charMap = new HashMap<>();
+		int left = 0; // Left pointer for the sliding window
+		int maxLength = 0; // Variable to store the maximum length
+
+		for (int right = 0; right < s.length(); right++) {
+			char currentChar = s.charAt(right);
+
+			// If the character is already in the map, move the left pointer
+			if (charMap.containsKey(currentChar)) {
+				// Update left pointer to be the maximum of its current value
+				// and the index after the last occurrence of the current character
+				left = Math.max(left, charMap.get(currentChar) + 1);
+			}
+
+			// Update the last seen index of the character
+			charMap.put(currentChar, right);
+			// Calculate the maximum length of the substring
+			maxLength = Math.max(maxLength, right - left + 1);
+		}
+
+		return maxLength;
+	}
+```
+
+#### Q2. Longest Repeating Character Replacement
+```
+public int longestRepeatingCharacterReplacement(String s, int k) {
+		HashMap<Character, Integer> charCountMap = new HashMap<>();
+		int left = 0; // Left pointer for the sliding window
+		int maxLength = 0; // Variable to store the maximum length
+		int maxCount = 0; // The count of the most frequently occurring character in the current window
+
+		for (int right = 0; right < s.length(); right++) {
+			char currentChar = s.charAt(right);
+			charCountMap.put(currentChar, charCountMap.getOrDefault(currentChar, 0) + 1);
+			maxCount = Math.max(maxCount, charCountMap.get(currentChar));
+
+			// Check if the current window size minus the count of the most frequent
+			// character
+			// is greater than k, which means we need to shrink the window from the left
+			while (right - left + 1 - maxCount > k) {
+				char leftChar = s.charAt(left);
+				charCountMap.put(leftChar, charCountMap.get(leftChar) - 1);
+				if (charCountMap.get(leftChar) == 0) {
+					charCountMap.remove(leftChar);
+				}
+				left++;
+			}
+
+			// Update the maximum length of the substring found
+			maxLength = Math.max(maxLength, right - left + 1);
+		}
+
+		return maxLength;
+	}
+```
+
+#### Q3. Valid Palindrome 
+```
+public boolean isPalindrome(String s) {
+		int left = 0;
+		int right = s.length() - 1;
+
+		while (left < right) {
+			// Move left pointer to the next valid character
+			while (left < right && !isValidChar(s.charAt(left))) {
+				left++;
+			}
+			// Move right pointer to the previous valid character
+			while (left < right && !isValidChar(s.charAt(right))) {
+				right--;
+			}
+
+			// Check if characters at left and right pointers are equal (ignoring case)
+			if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+				return false;
+			}
+
+			// Move pointers inward
+			left++;
+			right--;
+		}
+
+		return true;
+	}
+```
+
+#### Q4. Group Anagrams  
+```
+public List<List<String>> groupAnagrams(String[] strs) {
+		HashMap<String, List<String>> anagramMap = new HashMap<>();
+
+		for (String str : strs) {
+			// Sort the characters in the string to create a key
+			char[] charArray = str.toCharArray();
+			Arrays.sort(charArray);
+			String key = new String(charArray);
+
+			// Group the anagrams using the sorted string as a key
+			anagramMap.putIfAbsent(key, new ArrayList<>());
+			anagramMap.get(key).add(str);
+		}
+
+		return new ArrayList<>(anagramMap.values()); // Return the grouped anagrams
+	}
+```
+
+#### Q5. Valid Parentheses   
+```
+public boolean validParentheses(String s) {
+		Stack<Character> stack = new Stack<>();
+		// Mapping of closing brackets to their corresponding opening brackets
+		HashMap<Character, Character> bracketMap = new HashMap<>();
+		bracketMap.put(')', '(');
+		bracketMap.put('}', '{');
+		bracketMap.put(']', '[');
+
+		for (char ch : s.toCharArray()) {
+			// If it's a closing bracket
+			if (bracketMap.containsKey(ch)) {
+				// Check if the stack is empty or if the top of the stack doesn't match
+				if (stack.isEmpty() || stack.pop() != bracketMap.get(ch)) {
+					return false; // Invalid
+				}
+			} else {
+				// If it's an opening bracket, push it onto the stack
+				stack.push(ch);
+			}
+		}
+
+		// If the stack is empty, all opening brackets have been matched
+		return stack.isEmpty();
+	}
+```
+
+#### Q5. Valid Anagram  
+```
+public boolean isAnagram(String s, String t) {
+		if (s.length() != t.length()) {
+			return false;
+		}
+
+		// Convert strings to character arrays and sort them
+		char[] sArray = s.toCharArray();
+		char[] tArray = t.toCharArray();
+		Arrays.sort(sArray);
+		Arrays.sort(tArray);
+		
+		// Compare sorted arrays
+		return Arrays.equals(sArray, tArray);
+	}
+```
+
+#### Q6. Permutations  
+```
+public static void findPermutations(String str, String ans) {
+		// Base case: If the input string is empty
+		if (str.length() == 0) {
+			System.out.print(ans + " "); // Print the current permutation
+			return;
+		}
+
+		// Recursive case: Loop through each character of the string
+		for (int i = 0; i < str.length(); i++) {
+			// Get the ith character
+			char ch = str.charAt(i);
+
+			// Get the remaining string after excluding the ith character
+			String remainingString = str.substring(0, i) + str.substring(i + 1);
+
+			// Recursively find permutations with the current character fixed
+			findPermutations(remainingString, ans + ch);
+		}
+	}
+```
+
+#### Q7. Combination
+```
+public static void findCombinations(String str, String ans, int start) {
+        // Print the current combination
+        System.out.println(ans);
+
+        // Loop through all characters starting from 'start' index
+        for (int i = start; i < str.length(); i++) {
+            // Include the current character and find further combinations
+            findCombinations(str, ans + str.charAt(i), i + 1);
+        }
+    }
+```
+
+#### Q8. Palindrome Sub Strings
+```
+public static String replacePalindromicSubstrings(String s) {
+		StringBuilder result = new StringBuilder();
+		int i = 0;
+
+		while (i < s.length()) {
+			boolean foundPalindrome = false;
+
+			// Check for palindromic substrings from length 2 upwards
+			for (int j = s.length(); j > i; j--) {
+				String sub = s.substring(i, j);
+				if (isPalindrome(sub)) {
+					result.append("s"); // Replace palindrome with 's'
+					i = j; // Move i to end of this palindromic substring
+					foundPalindrome = true;
+					break;
+				}
+			}
+
+			if (!foundPalindrome) { // If no palindrome found, just add the character
+				result.append(s.charAt(i));
+				i++;
+			}
+		}
+
+		return result.toString();
+	}
+
+	private static boolean isPalindrome(String s) {
+	    return s.equals(new StringBuilder(s).reverse().toString());
+	}
+```
+
+#### Q9. Longest Common Substring
+```
+public static String longestCommonSubstring(String str1, String str2) {
+		int maxLength = 0; // Length of the longest common substring
+		int endIndex = 0; // Ending index of the longest common substring in str1
+
+		int[][] dp = new int[str1.length() + 1][str2.length() + 1];
+
+		for (int i = 1; i <= str1.length(); i++) {
+			for (int j = 1; j <= str2.length(); j++) {
+				if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+
+					if (dp[i][j] > maxLength) {
+						maxLength = dp[i][j];
+						endIndex = i;
+					}
+				}
+			}
+		}
+
+		// Extract the longest common substring
+		return str1.substring(endIndex - maxLength, endIndex);
+	}
+```
+
+#### Q10. Reverse Words in String
+```
+public String reverseWords(String s) {
+		// Trim leading and trailing spaces, and split by one or more spaces
+		String[] words = s.trim().split("\\s+");
+		StringBuilder reversedString = new StringBuilder();
+
+		// Append words in reverse order
+		for (int i = words.length - 1; i >= 0; i--) {
+			reversedString.append(words[i]);
+			if (i != 0) {
+				reversedString.append(" "); // Add space between words
+			}
+		}
+
+		return reversedString.toString(); // Convert StringBuilder to String
+	}
+```
+
 ## Other Problems
 
 ```
